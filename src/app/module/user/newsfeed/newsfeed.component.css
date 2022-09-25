@@ -1,0 +1,46 @@
+.a1 {
+  cursor: pointer;
+}
+
+.c1 {
+  width: 500px !important;
+}
+
+.i1 {
+  border-radius: 15px;
+}
+
+.font-size-18 {
+  font-size: 18px !important;
+}
+
+.font-size-16 {
+  font-size: 16px !important;
+}
+
+.font-size-15 {
+  font-size: 15px !important;
+}
+
+.border-radius-10 {
+  border-radius: 10px;
+}
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  outline: none;
+  background: white;
+  cursor: inherit;
+  display: block;
+}

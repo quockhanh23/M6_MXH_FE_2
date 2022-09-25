@@ -1,0 +1,66 @@
+<div class="backArrowDiv">
+    <span *ngIf="idUser != idUserLogIn" matTooltip="Quay lại"
+          (click)="back2()"
+          class="backButton title material-icons a1 a2 backArrowSpan">keyboard_backspace</span>
+  <span *ngIf="idUser == idUserLogIn" matTooltip="Quay lại"
+        (click)="back()"
+        class="backButton title material-icons a1 a2 backArrowSpan">keyboard_backspace</span>
+</div>
+<div class="bodyDiv">
+  <div class="row">
+    <div class="col-4">
+      <h3 *ngIf="idUser == idUserLogIn" class="h3List grey">{{list}} bạn bè ({{count}})</h3>
+      <h3 *ngIf="idUser != idUserLogIn" class="h3List grey">{{list}} bạn bè của: <span
+        style="color: #0fd90f">{{nameUser}} ({{count}})</span></h3>
+    </div>
+    <div class="col-4">
+      <form>
+        <input placeholder="Tìm kiếm bạn bè"
+               style="outline: none;border-radius: 8px; border: 1px solid; width: 400px; height: 30px; font-size: 25px;
+            background-repeat: no-repeat !important;" type="search" id="search">
+      </form>
+    </div>
+    <div class="col-4">
+      <h3 align="right" [routerLink]="['/user/requests']" *ngIf="idUser == idUserLogIn"
+          style="font-size: 20px; margin-top: 3px"
+          class="grey a1 a2">Lời mời kết bạn</h3>
+    </div>
+  </div>
+</div>
+<div style="margin-left: 50px">
+</div>
+<div style="border-radius: 5px;{{height}}">
+  <div style="margin-left: 200px">
+    <div class="row" style="height: 86px">
+      <div
+        style="background-color: #e5e5e5; border-radius: 5px;margin-top: 10px;
+         margin-right: 10px; margin-bottom: 10px; border: #afd9ee 1px solid"
+        class="col-5"
+        *ngFor=" let friend of listFriend">
+        <div id="left1">
+          <img style="font-size: 40px; width: 70px; height: 70px; border-radius: 5px; margin-top: 5px"
+               data-toggle="tooltip" data-placement="top" matTooltip="Xem trang cá nhân"
+               src="{{friend?.avatar}}" routerLink="/user/people-detail/{{friend?.id}}"
+               alt="" class=" a1"/>
+        </div>
+        <div id="left2">
+          <h2 matTooltip="Xem trang cá nhân"><a routerLink="/user/people-detail/{{friend?.id}}">{{friend?.fullName}}</a>
+          </h2>
+          <p>Bạn chung: </p>
+        </div>
+        <div id="left3">
+             <span matTooltip="Tuỳ chọn" [matMenuTriggerFor]="menu" style="margin-top: 10px"
+                   class="material-icons a1 a2">more_horiz</span>
+          <mat-menu #menu="matMenu">
+            <button class="a2 font-size-17" mat-menu-item>Yêu thích</button>
+            <button class="a2 font-size-17" mat-menu-item>Bỏ theo dõi</button>
+            <button class="a2 font-size-17" mat-menu-item>Huỷ kết bạn</button>
+          </mat-menu>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="height450px" *ngIf="count == null || count == 0">
+    <h2 style="margin-left: 40%; font-size: 35px; margin-top: 1%">Không có bạn bè</h2>
+  </div>
+</div>

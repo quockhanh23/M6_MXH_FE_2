@@ -1,0 +1,16 @@
+.a1 {
+  cursor: pointer;
+}
+
+.h2set {
+  margin-left: 95px;
+}
+
+.zoomImage:hover {
+  transform: scale(1.5);
+}
+
+.imageChange {
+  transition: all .3s ease;
+  display:block;
+}

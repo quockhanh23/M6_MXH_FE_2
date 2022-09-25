@@ -1,0 +1,39 @@
+<div class="backArrowDiv">
+  <span *ngIf="idUser == idUserLogIn" matTooltip="Quay lại"
+        [routerLink]="['/user/user-detail']"
+        class="backButton title material-icons a1 a2 backArrowSpan">keyboard_backspace</span>
+  <span *ngIf="idUser != idUserLogIn" matTooltip="Quay lại"
+        routerLink="/user/people-detail/{{idUser}}"
+        class="backButton title material-icons a1 a2 backArrowSpan">keyboard_backspace</span>
+</div>
+<div class="bodyDiv">
+  <div class="row">
+    <div class="col-6">
+      <h2 *ngIf="idUser != idUserLogIn">
+        <sub><span class="material-icons">collections</span></sub> Ảnh của : {{fullNameUser}}</h2>
+      <h2 *ngIf="idUser == idUserLogIn">
+        <sub><span class="material-icons">collections</span></sub> Ảnh của bạn</h2>
+    </div>
+    <div class="col-3">
+      <h2 *ngIf="idUser == idUserLogIn">
+        <sub><span class="material-icons">add_photo_alternate</span></sub>Thêm ảnh</h2>
+    </div>
+    <div class="col-3">
+      <h2 *ngIf="idUser == idUserLogIn">
+        <sub><span class="material-icons">delete</span></sub> Ảnh đã xóa</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div *ngFor="let image of images">
+      <div class="row">
+      <span *ngIf="image.user.id == idUserLogIn" matTooltip="Xóa ảnh" (click)="delete(image.id)"
+            class="a1 material-icons">highlight_off</span>
+      </div>
+      <img class="zoomImage imageChange"
+           style="width: 250px; height: 250px; border-radius: 10px; margin-right: 10px; margin-bottom: 10px"
+           src="{{image?.linkImage}}" alt="Lỗi">
+    </div>
+  </div>
+  <div style="{{height}}">
+  </div>
+</div>
