@@ -59,7 +59,7 @@ export class RegisterLoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.returnUrl = 'user/user-detail/timeline';
+    this.returnUrl = 'user/newsfeed';
     this.adminUrl = '/admin/manageUser'
     this.historyLogin()
   }
