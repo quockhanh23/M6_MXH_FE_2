@@ -85,7 +85,11 @@ export class PeopleDetailComponent implements OnInit {
         this.avatarUserLogin = result.avatar
       })
       this.imageService.allImageOfUser(id).subscribe(result => {
-        this.countImage = result.length
+        try {
+          this.countImage = result.length
+        } catch (err) {
+          console.log("lỗi length")
+        }
       }, error => {
         console.log("Lỗi: " + error)
       })
@@ -95,8 +99,12 @@ export class PeopleDetailComponent implements OnInit {
         console.log("Lỗi: " + error)
       })
       this.friendRelationService.agree(this.idUserLogIn, id).subscribe(rs => {
-        if (rs.length > 0) {
-          this.checkUser2 = true;
+        try {
+          if (rs.length > 0) {
+            this.checkUser2 = true;
+          }
+        } catch (err) {
+          console.log("lỗi length")
         }
       })
     })
@@ -114,7 +122,11 @@ export class PeopleDetailComponent implements OnInit {
     this.friendRelationService.listFriend(this.idUser).subscribe(result => {
       console.log("rs: " + this.checkAcceptFriend)
       this.friendRelations = result
-      this.countFriend = result.length
+      try {
+        this.countFriend = result.length
+      } catch (err) {
+        console.log("lỗi length")
+      }
       for (let i = 0; i < this.friendRelations.length; i++) {
         // console.log("Kiểu dữ liệu: " + JSON.stringify(this.friendRelations[i]))
         if (this.friendRelations[i].id == this.idUserLogIn) {
@@ -128,9 +140,12 @@ export class PeopleDetailComponent implements OnInit {
 
   friendCheck() {
     this.friendRelationService.friend(this.idUserLogIn, this.idUser).subscribe(rs => {
-      console.log("rs: " + rs)
-      if (rs.length > 0) {
-        this.checkAcceptFriend = true;
+      try {
+        if (rs.length > 0) {
+          this.checkAcceptFriend = true;
+        }
+      } catch (err) {
+        console.log("lỗi length")
       }
     })
   }
@@ -323,11 +338,15 @@ export class PeopleDetailComponent implements OnInit {
 
   listRequest() {
     this.friendRelationService.friendCheck(this.idUserLogIn).subscribe(rs => {
-      for (let i = 0; i < rs.length; i++) {
-        if (rs[i].idFriend == this.idUser) {
-          this.friend = rs[i]
-          this.checkAlreadyFriend = true
+      try {
+        for (let i = 0; i < rs.length; i++) {
+          if (rs[i].idFriend == this.idUser) {
+            this.friend = rs[i]
+            this.checkAlreadyFriend = true
+          }
         }
+      } catch (err) {
+        console.log("")
       }
     })
   }

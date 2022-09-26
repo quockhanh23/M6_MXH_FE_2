@@ -19,13 +19,16 @@ export class FriendRequestComponent implements OnInit {
   listFriendRequestSend?: User[];
   count1?: any
   count2?: any
+  count3?: any
   checkHeight1 = 'height: 640px'
   checkHeight2 = 'height: 640px'
-  marginTop = 'margin-top: 40px'
+  marginTop = 'margin-top: 20px'
   px = 'px'
   myRequest = 'Những người bạn đã gửi lời mời'
   peopleRequest = 'Lời mời kết bạn'
   url = localStorage.getItem("Url")
+  listFriend?: User[];
+  listPeople?: User[];
 
   constructor(private friendRelationService: FriendRelationService,
               private router: Router,
@@ -35,13 +38,19 @@ export class FriendRequestComponent implements OnInit {
   ngOnInit(): void {
     this.listRequestSend()
     this.listRequest()
+    this.friendList()
+    this.allPeople()
     console.log(window.location.href)
   }
 
   listRequestSend() {
     this.friendRelationService.listRequestSend(this.idUserLogIn).subscribe(rs => {
       this.listFriendRequestSend = rs;
-      this.count1 = rs.length
+      try {
+        this.count1 = rs.length
+      } catch (err) {
+        console.log("lỗi length")
+      }
       if (this.count1 > 0) {
         this.checkHeight2 = 'height: 100%';
         this.marginTop = 'margin-top:' + ' ' + this.count1 * rs.length + this.px
@@ -54,7 +63,11 @@ export class FriendRequestComponent implements OnInit {
   listRequest() {
     this.friendRelationService.listRequest(this.idUserLogIn).subscribe(rs => {
       this.listFriendRequest = rs;
-      this.count2 = rs.length
+      try {
+        this.count2 = rs.length
+      } catch (err) {
+        console.log("lỗi length")
+      }
       if (this.count2 > 0) {
         this.checkHeight1 = 'height: 100%';
         this.marginTop = 'margin-top:' + ' ' + this.count1 * rs.length + this.px
@@ -83,5 +96,28 @@ export class FriendRequestComponent implements OnInit {
     if (this.url == URL_HREF + '/user/newsfeed') {
       this.router.navigate(['user/newsfeed']).then()
     }
+  }
+
+  friendList() {
+    this.friendRelationService.listFriend(this.idUserLogIn).subscribe(rs => {
+      this.listFriend = rs
+      try {
+        this.count3 = rs.length
+      } catch (err) {
+        console.log("lỗi length")
+      }
+    })
+  }
+
+  allPeople() {
+    this.friendRelationService.allPeople(this.idUserLogIn).subscribe(rs => {
+      this.listPeople = rs
+    })
+  }
+
+  sendRequestFriend(idFriend: any) {
+    this.friendRelationService.sendRequestFriend(this.idUserLogIn, idFriend).subscribe(rs => {
+      this.ngOnInit()
+    })
   }
 }

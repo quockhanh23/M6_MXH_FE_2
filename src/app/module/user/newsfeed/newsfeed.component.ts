@@ -355,8 +355,11 @@ export class NewsfeedComponent implements OnInit {
     console.log("Vào hàm getListFriends" + idUser)
     this.friendRelationService.listFriend(idUser).subscribe(rs => {
       this.friendRelations3 = rs
-      this.countFriend = rs.length
-      console.log("Oke" + rs)
+      try {
+        this.countFriend = rs.length
+      } catch (err) {
+        console.log("Oke" + rs)
+      }
     })
   }
 

@@ -40,7 +40,11 @@ export class FriendListComponent implements OnInit {
     })
     this.friendRelationService.listFriend(this.idUser).subscribe(rs => {
       console.log("rs: " + this.idUser)
-      this.count = rs.length
+      try {
+        this.count = rs.length
+      } catch (err) {
+        console.log("")
+      }
       console.log("count: " + rs.length)
       if (rs == null) {
         this.count = 0
@@ -64,10 +68,16 @@ export class FriendListComponent implements OnInit {
       this.listFriend = rs
       for (let i = 0; i < this.listFriend.length; i++) {
         this.friendRelationService.listMutualFriend(this.listFriend[i].id, this.idUserLogIn).subscribe(rs => {
-          this.count2 = rs.length
+          try {
+            this.count2 = rs.length
+          } catch (err) {
+            console.log("")
+          }
         })
       }
       console.log("count2: " + rs.length)
+    }, error => {
+      console.log(error)
     })
   }
 

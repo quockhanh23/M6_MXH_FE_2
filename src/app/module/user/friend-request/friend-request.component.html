@@ -3,71 +3,113 @@
              (click)="back()"
              class="backButton title material-icons a1 a2 backArrowSpan">keyboard_backspace</span>
 </div>
-<div class="row">
-  <div class="col-5 formComponent">
-    <h2 *ngIf="count1 > 0">{{peopleRequest}}
+<div class="formComponent" style="background-color: #fcfcfc; border-radius: 5px; padding-top: 10px">
+  <div class="row">
+    <h2 class="h2Lag" *ngIf="count1 > 0">{{peopleRequest}}
       <sub>
         <mat-icon matBadge="{{count1}}" matBadgeColor="warn"></mat-icon>
       </sub>
     </h2>
-    <h2 *ngIf="count1 == 0">{{peopleRequest}}</h2>
+    <h2 class="h2Lag" *ngIf="count1 == 0">{{peopleRequest}}</h2>
   </div>
-  <div class="col">
-    <h2 *ngIf="count2 > 0">{{myRequest}}
+  <div *ngIf="count1 == 0" class="col-6">
+    <span style="font-size: 18px">Bạn không có lời mời kết bạn</span>
+  </div>
+  <div class="aloPica2" style="margin-top: 10px">
+    <div *ngFor="let fri of listFriendRequestSend"
+         class="divRequestFriend">
+      <div>
+        <h2 class="a1 a2" style="margin-bottom: 0px !important;" align="center" matTooltip="Xem trang cá nhân"
+            routerLink="/user/people-detail/{{fri?.id}}">{{fri?.fullName}}
+        </h2>
+        <img class="imageRequestFriend"
+             src="{{fri?.avatar}}">
+        <button style="width: 100%" (click)="acceptFriend(fri?.id)" mat-raised-button color="primary">Xác nhận
+        </button>
+        <button style="width: 100%" (click)="deleteRequest(fri?.id)" mat-raised-button color="warn">Từ chối</button>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <h2 class="h2Lag" *ngIf="count2 > 0">{{myRequest}}
       <sub>
         <mat-icon matBadge="{{count2}}" matBadgeColor="warn"></mat-icon>
       </sub>
     </h2>
-    <h2 *ngIf="count2 == 0">{{myRequest}}</h2>
+    <h2 class="h2Lag" *ngIf="count2 == 0">{{myRequest}}</h2>
   </div>
-</div>
-<div style="margin-left: 5%; margin-right: 5%;">
-  <div class="row">
+  <div *ngIf="count2 == 0" class="col-6">
+    <span style="font-size: 18px">Bạn chưa gửi lời mời kết bạn</span>
+  </div>
+  <div class="aloPica2" style="margin-top: 10px">
+    <div *ngFor="let fr of listFriendRequest"
+         class="divRequestFriend">
+      <h2 class="a1 a2" style="margin-bottom: 0px !important;" align="center"
+          matTooltip="Xem trang cá nhân" routerLink="/user/people-detail/{{fr?.id}}">{{fr?.fullName}}</h2>
+      <img class="imageRequestFriend"
+           src="{{fr?.avatar}}">
+      <button style="width: 100%" (click)="deleteRequest(fr?.id)" mat-raised-button color="primary">Hủy yêu cầu
+      </button>
+      <div style="height: 37px"></div>
+    </div>
+  </div>
+  <hr>
+  <div class="a1">
+    <h2 class="h2MarginLeft">Bạn bè của bạn
+      <sub>
+        <mat-icon matBadge="{{count3}}" matBadgeColor="warn"></mat-icon>
+      </sub>
+    </h2>
     <div *ngIf="count1 == 0" class="col-6">
-      <span style="font-size: 18px">Bạn không có lời mời kết bạn</span>
+      <span style="font-size: 18px">Bạn không có bạn bè</span>
     </div>
-    <div *ngIf="count2 == 0" class="col-6">
-      <span style="font-size: 18px">Bạn chưa gửi lời mời kết bạn</span>
-    </div>
-    <div *ngIf="count1 > 0" class="col-6" style="background-color: #F2F3F5; {{checkHeight1}}">
-      <div class="row">
-        <div class="alopica" *ngFor="let fri of listFriendRequestSend"
-             style="border: #e5e5e5 1px solid ; margin: 6px; border-radius: 5px">
-          <h2 class="a1 a2" style="margin-bottom: 0px !important;" matTooltip="Xem trang cá nhân"
-              routerLink="/user/people-detail/{{fri?.id}}">{{fri?.fullName}}
-          </h2>
-          <img style="border-radius: 5px; border: #e5e5e5 1px solid; width: 100%; height: 200px;" src="{{fri?.avatar}}">
-          <button style="width: 100%" (click)="acceptFriend(fri?.id)" mat-raised-button color="primary">Xác nhận
+  </div>
+  <div class="aloPica4" style="margin-top: 10px">
+    <div *ngFor="let friend of listFriend"
+         class="divRequestFriend">
+      <div>
+        <h2 class="a1 a2" style="margin-bottom: 0px !important;" align="center"
+            matTooltip="Xem trang cá nhân" routerLink="/user/people-detail/{{friend?.id}}">{{friend?.fullName}}</h2>
+        <img class="imageRequestFriend"
+             src="{{friend?.avatar}}">
+        <div style="height: 37px">
+          <button style="width: 50%" mat-raised-button>
+            <span class="material-icons">how_to_reg</span>
+            <span style="font-size: 15px">Bạn bè</span>
           </button>
-          <button style="width: 100%" (click)="deleteRequest(fri?.id)" mat-raised-button color="warn">Từ chối</button>
+          <button style="width: 50%" mat-raised-button color="primary">
+            <span class="material-icons">offline_bolt</span>
+            <span style="font-size: 15px">Nhắn tin</span>
+          </button>
         </div>
       </div>
     </div>
-    <div *ngIf="count2 > 0" class="col-6" style="background-color: #F2F3F5; {{checkHeight2}}">
-      <div class="row">
-        <div class="alopica" *ngFor="let fr of listFriendRequest"
-             style="border: #e5e5e5 1px solid ; margin: 6px; border-radius: 5px; ">
-          <div>
-            <h2 class="a1 a2" style="margin-bottom: 0px !important;"
-                matTooltip="Xem trang cá nhân" routerLink="/user/people-detail/{{fr?.id}}">{{fr?.fullName}}</h2>
-            <img style="border-radius: 5px; border: #e5e5e5 1px solid; width: 100%; height: 200px;"
-                 src="{{fr?.avatar}}">
-            <button style="width: 100%" (click)="deleteRequest(fr?.id)" mat-raised-button color="primary">Hủy yêu cầu
-            </button>
-            <div style="height: 37px"></div>
-          </div>
+  </div>
+  <hr>
+  <div style="{{marginTop}}">
+    <h2 class="h2MarginLeft">Tìm kiếm bạn bè</h2>
+    <form>
+      <input class="h2MarginLeft" placeholder="Tìm kiếm bạn bè"
+             style="outline: none;border-radius: 8px; border: 1px solid; width: 400px; height: 30px; font-size: 25px;
+            background-repeat: no-repeat !important;" type="search" id="search">
+    </form>
+  </div>
+  <div class="aloPica4" style="margin-top: 10px">
+    <div *ngFor="let people of listPeople"
+         class="divRequestFriend">
+      <div>
+        <h2 class="a1 a2" style="margin-bottom: 0px !important;" align="center"
+            matTooltip="Xem trang cá nhân" routerLink="/user/people-detail/{{people?.id}}">{{people?.fullName}}</h2>
+        <img class="imageRequestFriend"
+             src="{{people?.avatar}}">
+        <div style="height: 37px">
+          <button style="width: 100%" mat-raised-button color="primary" (click)="sendRequestFriend(people?.id)">
+            <span class="material-icons">person_add_alt_1</span>
+            <span style="font-size: 15px">Kết bạn</span>
+          </button>
         </div>
       </div>
     </div>
   </div>
 </div>
-<div class="formComponent a1">
- <div class="col-2">
-   <h2 matTooltip="Xem" [routerLink]="['/user/listFriend', idUserLogIn]">Bạn bè của bạn</h2>
- </div>
-</div>
-<div class="formComponent" style="{{marginTop}}">
-  <h2>Tìm kiếm bạn bè</h2>
-  <input>
-</div>
-<div *ngIf="count2 == 0" style="{{checkHeight1}}"></div>

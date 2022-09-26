@@ -10,6 +10,6 @@
   overflow-x: hidden; /* Show horizontal scrollbar */
 }
 #scroll2{
-  overflow-y: scroll;
+  overflow: scroll;
   height: 638px;
 }

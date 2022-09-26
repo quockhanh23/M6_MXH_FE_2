@@ -51,7 +51,11 @@ export class MessengerComponent implements OnInit {
   ngOnInit(): void {
     this.friendRelationService.listFriend(this.idUserLogIn).subscribe(rs => {
       this.listFriend = rs
-      this.countFriend = rs.length
+      try {
+        this.countFriend = rs.length
+      } catch (err) {
+        console.log("lỗi length")
+      }
     })
     // @ts-ignore
     this.messengerService.myMessenger(this.idUserLogIn).subscribe(rs => {
@@ -65,7 +69,11 @@ export class MessengerComponent implements OnInit {
   }
 
   scrollToBottom(): void {
-    this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+    try {
+      this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+    } catch (err) {
+      console.log("lỗi scroll")
+    }
   }
 
   createConversation(idReceiver: any) {
@@ -78,7 +86,11 @@ export class MessengerComponent implements OnInit {
       // @ts-ignore
       this.messengerService.findAllByConversationOrderById(this.idConversation).subscribe(rs => {
         this.messengers = rs
-        this.count = rs.length
+        try {
+          this.count = rs.length
+        } catch (err) {
+          console.log("lỗi length")
+        }
       })
       // @ts-ignore
       this.messengerService.findById(this.idConversation).subscribe(rs => {
@@ -109,7 +121,11 @@ export class MessengerComponent implements OnInit {
       // @ts-ignore
       this.messengerService.findAllByConversationOrderById(this.idConversation).subscribe(rs => {
         this.messengers = rs
-        this.count = rs.length
+        try {
+          this.count = rs.length
+        } catch (err) {
+          console.log("lỗi length")
+        }
         this.ngOnInit()
       })
     }, error => {

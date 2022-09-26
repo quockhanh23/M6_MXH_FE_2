@@ -23,6 +23,10 @@ export class FriendRelationService {
     return this.httpClient.get<any>(API_URL + `/findAllListRequestAddFriendById?idUser=${idUser}`);
   }
 
+  allPeople(idUser: any): Observable<any> {
+    return this.httpClient.get<any>(API_URL + `/allPeople?idUser=${idUser}`);
+  }
+
   listRequest(idUser: any): Observable<any> {
     return this.httpClient.get<any>(API_URL + `/listRequest?idUser=${idUser}`);
   }

@@ -43,6 +43,7 @@ export class MessengerDetailComponent implements OnInit {
   ngOnInit(): void {
     this.idUser = this.activatedRoute.snapshot.paramMap.get('id');
     console.log("idUser: " + this.idUser)
+    console.log("idUserLogIn: " + this.idUserLogIn)
     this.userService.findById(this.idUser).subscribe(rs => {
       this.user = rs;
     })
@@ -68,6 +69,15 @@ export class MessengerDetailComponent implements OnInit {
           this.idConversation = this.conversation?.id
         })
       }
+      console.log("idConversation: " + this.idConversation)
+      this.findById();
+    }, error => {
+      // @ts-ignore
+      this.messengerService.createConversation(this.idUserLogIn, this.idUser).subscribe(rs => {
+        this.conversation = rs
+        console.log("this.conversation" + this.conversation)
+        this.idConversation = this.conversation?.id
+      })
       console.log("idConversation: " + this.idConversation)
       this.findById();
     })
