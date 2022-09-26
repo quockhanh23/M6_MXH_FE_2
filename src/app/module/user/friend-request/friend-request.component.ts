@@ -29,6 +29,10 @@ export class FriendRequestComponent implements OnInit {
   url = localStorage.getItem("Url")
   listFriend?: User[];
   listPeople?: User[];
+  heightFriendList: any
+  heightFriendRequest: any
+  heightFriendRequestSend: any
+  heightListPeople: any
 
   constructor(private friendRelationService: FriendRelationService,
               private router: Router,
@@ -47,6 +51,11 @@ export class FriendRequestComponent implements OnInit {
     this.friendRelationService.listRequestSend(this.idUserLogIn).subscribe(rs => {
       this.listFriendRequestSend = rs;
       try {
+        if (rs.length > 7) {
+          this.heightFriendRequestSend = 'height: 580px;'
+        } else {
+          this.heightFriendRequestSend = 'height: 100%;'
+        }
         this.count1 = rs.length
       } catch (err) {
         console.log("lỗi length")
@@ -64,6 +73,11 @@ export class FriendRequestComponent implements OnInit {
     this.friendRelationService.listRequest(this.idUserLogIn).subscribe(rs => {
       this.listFriendRequest = rs;
       try {
+        if (rs.length > 7) {
+          this.heightFriendRequest = 'height: 580px;'
+        } else {
+          this.heightFriendRequest = 'height: 100%;'
+        }
         this.count2 = rs.length
       } catch (err) {
         console.log("lỗi length")
@@ -102,6 +116,11 @@ export class FriendRequestComponent implements OnInit {
     this.friendRelationService.listFriend(this.idUserLogIn).subscribe(rs => {
       this.listFriend = rs
       try {
+        if (rs.length > 7) {
+          this.heightFriendList = 'height: 580px;'
+        } else {
+          this.heightFriendList = 'height: 100%;'
+        }
         this.count3 = rs.length
       } catch (err) {
         console.log("lỗi length")
@@ -111,6 +130,15 @@ export class FriendRequestComponent implements OnInit {
 
   allPeople() {
     this.friendRelationService.allPeople(this.idUserLogIn).subscribe(rs => {
+      try {
+        if (rs.length > 7) {
+          this.heightListPeople = 'height: 580px;'
+        } else {
+          this.heightListPeople = 'height: 100%;'
+        }
+      } catch (err) {
+        console.log("")
+      }
       this.listPeople = rs
     })
   }

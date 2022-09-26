@@ -6,28 +6,10 @@
   color: #ffc107;
 }
 
-.aloPica {
-  width: 14%;
-  float: left;
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-
-.aloPica2 {
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-
-.aloPica3 {
-  overflow-y: hidden; /* Show vertical scrollbar */
-  overflow-x: scroll; /* Show horizontal scrollbar */
-  height: 300px;
-}
-
 .aloPica4 {
   overflow-y: scroll;
   overflow-x: hidden;
-  height: 580px;
+  margin-top: 10px;
 }
 
 .formComponent {
@@ -58,3 +40,8 @@
 .h2MarginLeft {
   margin-left: 1%;
 }
+
+.spanFontSize {
+  font-size: 15px;
+}
+

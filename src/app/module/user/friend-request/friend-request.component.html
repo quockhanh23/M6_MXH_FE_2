@@ -5,17 +5,17 @@
 </div>
 <div class="formComponent" style="background-color: #fcfcfc; border-radius: 5px; padding-top: 10px">
   <div class="row">
-    <h2 class="h2Lag" *ngIf="count1 > 0">{{peopleRequest}}
+    <h2 class="h2Lag a2" *ngIf="count1 > 0">{{peopleRequest}}
       <sub>
         <mat-icon matBadge="{{count1}}" matBadgeColor="warn"></mat-icon>
       </sub>
     </h2>
-    <h2 class="h2Lag" *ngIf="count1 == 0">{{peopleRequest}}</h2>
+    <h2 class="h2Lag a2" *ngIf="count1 == 0">{{peopleRequest}}</h2>
   </div>
   <div *ngIf="count1 == 0" class="col-6">
     <span style="font-size: 18px">Bạn không có lời mời kết bạn</span>
   </div>
-  <div class="aloPica2" style="margin-top: 10px">
+  <div class="aloPica4" style="{{heightFriendRequestSend}}">
     <div *ngFor="let fri of listFriendRequestSend"
          class="divRequestFriend">
       <div>
@@ -32,17 +32,17 @@
   </div>
   <hr>
   <div class="row">
-    <h2 class="h2Lag" *ngIf="count2 > 0">{{myRequest}}
+    <h2 class="h2Lag a2" *ngIf="count2 > 0">{{myRequest}}
       <sub>
         <mat-icon matBadge="{{count2}}" matBadgeColor="warn"></mat-icon>
       </sub>
     </h2>
-    <h2 class="h2Lag" *ngIf="count2 == 0">{{myRequest}}</h2>
+    <h2 class="h2Lag a2" *ngIf="count2 == 0">{{myRequest}}</h2>
   </div>
   <div *ngIf="count2 == 0" class="col-6">
     <span style="font-size: 18px">Bạn chưa gửi lời mời kết bạn</span>
   </div>
-  <div class="aloPica2" style="margin-top: 10px">
+  <div class="aloPica4" style="{{heightFriendRequest}}">
     <div *ngFor="let fr of listFriendRequest"
          class="divRequestFriend">
       <h2 class="a1 a2" style="margin-bottom: 0px !important;" align="center"
@@ -56,16 +56,16 @@
   </div>
   <hr>
   <div class="a1">
-    <h2 class="h2MarginLeft">Bạn bè của bạn
+    <h2 class="h2MarginLeft a2">Bạn bè của bạn
       <sub>
         <mat-icon matBadge="{{count3}}" matBadgeColor="warn"></mat-icon>
       </sub>
     </h2>
-    <div *ngIf="count1 == 0" class="col-6">
+    <div *ngIf="count3 == null" class="col-6">
       <span style="font-size: 18px">Bạn không có bạn bè</span>
     </div>
   </div>
-  <div class="aloPica4" style="margin-top: 10px">
+  <div class="aloPica4" style="{{heightFriendList}}">
     <div *ngFor="let friend of listFriend"
          class="divRequestFriend">
       <div>
@@ -76,11 +76,11 @@
         <div style="height: 37px">
           <button style="width: 50%" mat-raised-button>
             <span class="material-icons">how_to_reg</span>
-            <span style="font-size: 15px">Bạn bè</span>
+            <span class="spanFontSize">Bạn bè</span>
           </button>
           <button style="width: 50%" mat-raised-button color="primary">
             <span class="material-icons">offline_bolt</span>
-            <span style="font-size: 15px">Nhắn tin</span>
+            <span class="spanFontSize">Nhắn tin</span>
           </button>
         </div>
       </div>
@@ -88,14 +88,14 @@
   </div>
   <hr>
   <div style="{{marginTop}}">
-    <h2 class="h2MarginLeft">Tìm kiếm bạn bè</h2>
+    <h2 class="h2MarginLeft a2">Tìm kiếm bạn bè</h2>
     <form>
       <input class="h2MarginLeft" placeholder="Tìm kiếm bạn bè"
              style="outline: none;border-radius: 8px; border: 1px solid; width: 400px; height: 30px; font-size: 25px;
             background-repeat: no-repeat !important;" type="search" id="search">
     </form>
   </div>
-  <div class="aloPica4" style="margin-top: 10px">
+  <div class="aloPica4" style="{{heightListPeople}}">
     <div *ngFor="let people of listPeople"
          class="divRequestFriend">
       <div>
@@ -106,7 +106,7 @@
         <div style="height: 37px">
           <button style="width: 100%" mat-raised-button color="primary" (click)="sendRequestFriend(people?.id)">
             <span class="material-icons">person_add_alt_1</span>
-            <span style="font-size: 15px">Kết bạn</span>
+            <span class="spanFontSize">&nbsp;Kết bạn</span>
           </button>
         </div>
       </div>
