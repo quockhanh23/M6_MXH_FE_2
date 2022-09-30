@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {UserService} from "../../../../services/user.service";
 
@@ -26,13 +26,12 @@ export class TimelineAboutComponent implements OnInit {
     this.cover = this.currentUser.cover;
     this.userService.getUserProfile(this.currentUser.id).subscribe(result => {
       this.currentUser = result;
-      localStorage.setItem('currentUser',JSON.stringify(result));
+      localStorage.setItem('currentUser', JSON.stringify(result));
       this.avatar = this.currentUser.avatar;
       this.cover = this.currentUser.cover;
     }, error => {
       console.log(error);
     })
-
   }
 
   ngOnInit(): void {

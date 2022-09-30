@@ -76,7 +76,6 @@ export class NewsfeedComponent implements OnInit {
   ) {
     // @ts-ignore
     this.currentUser = localStorage.getItem("currentUser")
-    console.log(this.currentUser);
     this.idUser = JSON.parse(this.currentUser).id;
     console.log(this.idUser);
     this.userService.userDetail(this.idUser + "").subscribe(result => {

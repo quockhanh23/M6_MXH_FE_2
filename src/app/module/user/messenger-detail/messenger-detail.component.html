@@ -1,6 +1,6 @@
 <div class="backArrowDiv">
   <span matTooltip="Quay lại"
-        [routerLink]="['/user/people-detail', user?.id]"
+        (click)="back()"
         class="backButton title material-icons a1 a2 backArrowSpan">keyboard_backspace</span>
 </div>
 
@@ -10,6 +10,9 @@
       <h2 style="margin-left: 2%" class="a2" *ngIf="idUserLogIn != user?.id">{{withUser}} {{user?.fullName}} </h2>
     </div>
     <div class="col" align="right" style="margin-right: 1%">
+      <sub><span matTooltip="Đổi màu nền" style="color: #eee1e1" (click)="changeBackgroundColor4()"
+                 class="a1 material-icons">radio_button_checked
+          </span></sub>
       <sub><span matTooltip="Đổi màu nền" style="color: pink" (click)="changeBackgroundColor1()"
                  class="a1 material-icons">radio_button_checked
       </span></sub>
@@ -46,21 +49,28 @@
                      src="{{mes?.idSender?.avatar}}">
               </div>
               <div class="col-11">
-                <h2 style="margin-top: 10px;">
-                    <span
-                      style="padding: 5px;border-radius: 12px;background-color: #e7e7e7; color: #3c3c3c">
-                      &emsp;{{mes?.content}}&emsp;
-                    </span>
+                <h2 align="left" style="margin-top: 10px;">
+                    <span class="messageContentLeft"
+                          *ngIf="mes?.content != ''">
+                          &emsp;{{mes?.content}}&emsp;
+                  </span>
                 </h2>
+                <img align="left" class="imageMessage"
+                     *ngIf="mes?.image != '' && mes?.image != null"
+                     src="{{mes?.image}}">
               </div>
             </div>
             <div class="row" *ngIf="idUserLogIn != mes?.idSender?.id">
               <div class="col-11">
                 <h2 align="right" style="margin-top: 10px;">
-                      <span
-                        style="padding: 5px;border-radius: 12px;background-color: #1c75bc; color: whitesmoke">&emsp;{{mes?.content}}&emsp;
+                      <span class="messageContentRight"
+                            *ngIf="mes?.content != ''">
+                            &emsp;{{mes?.content}}&emsp;
                       </span>
                 </h2>
+                <img align="right" class="imageMessage"
+                     *ngIf="mes?.image != '' && mes?.image != null"
+                     src="{{mes?.image}}">
               </div>
               <div class="col-1">
                 <img align="right" class="imgFix"
@@ -81,20 +91,46 @@
                   placeholder="Aa">
               </div>
               <div class="col-1">
-                <sup>
-                  <span matTooltip="Tải ảnh lên" style="font-size: 73px; color: #196d86"
-                        class="a1 material-icons">image
-                  </span>
+                <sup *ngIf="conversation != null">
+                  <span matTooltip="Tải ảnh lên" style="font-size: 73px; color: #196d86" #userPhoto
+                        (change)="onFileSelected($event)"
+                        class="a1 material-icons btn-file">image
+                   <input type="file" name="image" autocomplete="off" class="a1 form-control"></span>
+                </sup>
+                <sup *ngIf="conversation == null">
+                  <span matTooltip="Tải ảnh lên" style="font-size: 73px; color: #d9e3e7" #userPhoto
+                        class="a1 material-icons btn-file">image
+                   </span>
                 </sup>
               </div>
               <div class="col">
-                <button
-                  style="width: 96%; height: 60px; font-size: 18px" mat-raised-button color="accent"
-                  type="summit">Gửi
+                <button *ngIf="conversation != null && checkButton"
+                        style="width: 96%; height: 60px; font-size: 18px" mat-raised-button color="accent"
+                        type="summit">Gửi
+                </button>
+                <div style="margin-left: 60px; margin-top: 10px" *ngIf="checkDone">
+                  <mat-spinner [diameter]="30"></mat-spinner>
+                  <span>Đang tải ảnh</span>
+                </div>
+                <button *ngIf="conversation == null" disabled
+                        style="width: 96%; height: 60px; font-size: 18px" mat-raised-button color="accent"
+                        type="summit">Gửi
                 </button>
               </div>
             </div>
-            <span style="margin-left: 10px">Tối đa 200 kí tự.</span>
+            <div class="row">
+              <div class="col-8">
+                <span style="margin-left: 10px">Tối đa 200 kí tự.</span>
+              </div>
+              <div class="col-3">
+                <div *ngIf="fb != null">
+                  <img
+                    style="width: 50px; height: 50px; border-radius: 2px; border: #e5e5e5 1px solid; margin-left: 11px"
+                    src="{{fb}}" alt="">
+                  <span class="font-size-15" style="margin-left: 40px">Ảnh đã tải lên</span>
+                </div>
+              </div>
+            </div>
           </form>
         </div>
       </div>

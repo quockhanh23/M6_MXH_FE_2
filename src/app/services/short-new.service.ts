@@ -34,11 +34,11 @@ export class ShortNewService {
     return this.httpClient.get<ShortNews[]>(API_URL + `/myShortNews?idUser=${idUser}`);
   }
 
-  deleteShortNews(idSortNew: any, idUser: any): Observable<ShortNews> {
+  deleteShortNew(idSortNew: any, idUser: any): Observable<ShortNews> {
     return this.httpClient.delete<ShortNews>(API_URL + `/deleteShortNews?idSortNew=${idSortNew}&idUser=${idUser}`);
   }
 
-  deleteShortNews2(idSortNew: any, idUser: any): Observable<ShortNews> {
+  deleteShortNewInDataBase(idSortNew: any, idUser: any): Observable<ShortNews> {
     return this.httpClient.delete<ShortNews>(API_URL + `/deleteShortNews2?idSortNew=${idSortNew}&idUser=${idUser}`);
   }
 }

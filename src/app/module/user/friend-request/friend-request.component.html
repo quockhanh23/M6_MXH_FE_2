@@ -74,11 +74,11 @@
         <img class="imageRequestFriend"
              src="{{friend?.avatar}}">
         <div style="height: 37px">
-          <button style="width: 50%" mat-raised-button>
+          <button style="width: 50%; background-color: whitesmoke" mat-raised-button>
             <span class="material-icons">how_to_reg</span>
             <span class="spanFontSize">Bạn bè</span>
           </button>
-          <button style="width: 50%" mat-raised-button color="primary">
+          <button  [routerLink]="['/user/messengerDetail', friend?.id]" style="width: 50%" mat-raised-button color="primary">
             <span class="material-icons">offline_bolt</span>
             <span class="spanFontSize">Nhắn tin</span>
           </button>

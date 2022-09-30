@@ -28,7 +28,7 @@
                   <sub><span class="material-icons">person_remove</span></sub><a>Hủy kết bạn</a>
                 </li>
                 <li *ngIf="!checkAlreadyFriend && !checkAcceptFriend" (click)="sendRequestFriend(userDetail?.id)">
-                  <sub><span class="material-icons">people</span></sub><a>Kết bạn</a>
+                  <sub><span class="material-icons">person_add_alt_1</span></sub><a>Kết bạn</a>
                 </li>
                 <li *ngIf="checkAlreadyFriend && !checkUser2">
                   <sub><span class="material-icons">add_reaction</span></sub><a>Đã gửi lời mời kết bạn</a>

@@ -111,6 +111,7 @@ export class PeopleDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    localStorage.setItem('Url', window.location.href);
     this.allComment()
     this.allAnswerComment()
     this.listRequest()

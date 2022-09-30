@@ -7,6 +7,8 @@ import {Conversation} from "../../../models/conversation";
 import {Messenger} from "../../../models/messenger";
 import {FormControl, FormGroup} from "@angular/forms";
 import {Router} from "@angular/router";
+import {finalize, Observable} from "rxjs";
+import {AngularFireStorage} from "@angular/fire/compat/storage";
 
 @Component({
   selector: 'app-messenger',
@@ -32,6 +34,11 @@ export class MessengerComponent implements OnInit {
   myScrollContainer: any;
   count = 0
   background: any
+  checkDone = false
+  checkButton = true
+  checkConversation = true
+  fb: any;
+  downloadURL!: Observable<string>;
 
   messengerForm: FormGroup = new FormGroup({
     content: new FormControl("",),
@@ -41,6 +48,7 @@ export class MessengerComponent implements OnInit {
   constructor(private userService: UserService,
               private friendRelationService: FriendRelationService,
               private messengerService: MessengerService,
+              private storage: AngularFireStorage,
               private router: Router) {
   }
 
@@ -112,7 +120,7 @@ export class MessengerComponent implements OnInit {
     console.log("vào hàm createMessenger")
     const newMessenger = {
       content: this.messengerForm.value.content,
-      image: this.messengerForm.value.image,
+      image: this.fb
     }
     console.log(newMessenger)
     // @ts-ignore
@@ -121,6 +129,7 @@ export class MessengerComponent implements OnInit {
       // @ts-ignore
       this.messengerService.findAllByConversationOrderById(this.idConversation).subscribe(rs => {
         this.messengers = rs
+        this.fb = null
         try {
           this.count = rs.length
         } catch (err) {
@@ -134,6 +143,45 @@ export class MessengerComponent implements OnInit {
     this.ngOnInit()
   }
 
+  onFileSelected(event: any) {
+    this.checkDone = true
+    this.checkButton = false
+    let n = Date.now();
+    const file = event.target.files[0];
+    const filePath = `RoomsImages/${n}`;
+    const fileRef = this.storage.ref(filePath);
+    const task = this.storage.upload(`RoomsImages/${n}`, file);
+    task
+      .snapshotChanges()
+      .pipe(
+        finalize(() => {
+          this.downloadURL = fileRef.getDownloadURL();
+          this.downloadURL.subscribe(url => {
+            if (url) {
+              this.fb = url;
+            }
+            console.log(this.fb);
+            this.checkDone = false
+            this.checkButton = true
+          });
+        })
+      )
+      .subscribe(url => {
+        if (url) {
+          console.log(url);
+        }
+      });
+  }
+
+  closeMessage() {
+    this.checkConversation = false
+  }
+
+  openMessage() {
+    this.checkConversation = true
+    this.ngOnInit()
+  }
+
   changeBackgroundColor1() {
     this.background = 'background-color: pink'
   }
@@ -144,5 +192,9 @@ export class MessengerComponent implements OnInit {
 
   changeBackgroundColor3() {
     this.background = 'background-color: #1deecf'
+  }
+
+  changeBackgroundColor4() {
+    this.background = 'background-color: #fcfcfc'
   }
 }

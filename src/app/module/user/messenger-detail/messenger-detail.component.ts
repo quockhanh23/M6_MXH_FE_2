@@ -6,6 +6,9 @@ import {Messenger} from "../../../models/messenger";
 import {User} from "../../../models/user";
 import {Conversation} from "../../../models/conversation";
 import {FormControl, FormGroup} from "@angular/forms";
+import {environment} from "../../../../environments/environment";
+import {finalize, Observable} from "rxjs";
+import {AngularFireStorage} from "@angular/fire/compat/storage";
 
 @Component({
   selector: 'app-messenger-detail',
@@ -15,6 +18,7 @@ import {FormControl, FormGroup} from "@angular/forms";
 export class MessengerDetailComponent implements OnInit {
   idConversation?: any
   idUserLogIn = localStorage.getItem("USERID")
+  url = localStorage.getItem("Url")
   messengers?: Messenger[]
   messenger?: Messenger
   user?: User
@@ -27,6 +31,10 @@ export class MessengerDetailComponent implements OnInit {
   background: any
   myScrollContainer: any;
   border = 'border: #b2dba1 1px solid'
+  checkDone = false
+  checkButton = true
+  fb: any;
+  downloadURL!: Observable<string>;
 
   messengerForm: FormGroup = new FormGroup({
     content: new FormControl("",),
@@ -37,6 +45,7 @@ export class MessengerDetailComponent implements OnInit {
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
               private userService: UserService,
+              private storage: AngularFireStorage,
               private messengerService: MessengerService) {
   }
 
@@ -89,25 +98,29 @@ export class MessengerDetailComponent implements OnInit {
   }
 
   scrollToBottom(): void {
-    this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+    try {
+      this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+    } catch (err) {
+      console.log("")
+    }
   }
 
   findById() {
     this.messengerService.messenger(this.idUser, this.idConversation).subscribe(rs => {
-      console.log("this.messenger" + this.messengers)
       this.messengers = rs
       this.count = rs.length
       this.checkCount()
     }, error => {
+      console.log("Lỗi: " + error)
       this.checkCount()
     })
     // @ts-ignore
     this.messengerService.messenger(this.idUserLogIn, this.idConversation).subscribe(rs => {
-      console.log("this.messenger" + this.messengers)
       this.messengers = rs
       this.count2 = rs.length
       this.checkCount()
     }, error => {
+      console.log("Lỗi: " + error)
       this.checkCount()
     })
   }
@@ -129,17 +142,62 @@ export class MessengerDetailComponent implements OnInit {
     console.log("vào hàm createMessenger")
     const newMessenger = {
       content: this.messengerForm.value.content,
-      image: this.messengerForm.value.image,
+      image: this.fb
     }
     console.log(newMessenger)
     // @ts-ignore
     this.messengerService.createMessenger(idConversation, this.idUserLogIn, newMessenger).subscribe(rs => {
       console.log("vào đây")
       this.messenger = rs
+      this.fb = null
     }, error => {
       console.log("Lỗi: " + error)
     })
     this.ngOnInit()
+  }
+
+  back() {
+    if (this.url == environment.localUrl + '/user/people-detail/' + this.idUser) {
+      this.router.navigate(['user/people-detail', this.idUser]).then(rs => {
+        console.log(rs)
+      })
+    }
+    if (this.url == environment.localUrl + '/user/requests') {
+      this.router.navigate(['user/requests']).then(rs => {
+        console.log(rs)
+      })
+    }
+    this.router.navigate(['user/people-detail', this.idUser]).then()
+  }
+
+  onFileSelected(event: any) {
+    this.checkDone = true
+    this.checkButton = false
+    let n = Date.now();
+    const file = event.target.files[0];
+    const filePath = `RoomsImages/${n}`;
+    const fileRef = this.storage.ref(filePath);
+    const task = this.storage.upload(`RoomsImages/${n}`, file);
+    task
+      .snapshotChanges()
+      .pipe(
+        finalize(() => {
+          this.downloadURL = fileRef.getDownloadURL();
+          this.downloadURL.subscribe(url => {
+            if (url) {
+              this.fb = url;
+            }
+            console.log(this.fb);
+            this.checkDone = false
+            this.checkButton = true
+          });
+        })
+      )
+      .subscribe(url => {
+        if (url) {
+          console.log(url);
+        }
+      });
   }
 
   changeBackgroundColor1() {
@@ -152,5 +210,9 @@ export class MessengerDetailComponent implements OnInit {
 
   changeBackgroundColor3() {
     this.background = 'background-color: #1deecf'
+  }
+
+  changeBackgroundColor4() {
+    this.background = 'background-color: #fcfcfc'
   }
 }

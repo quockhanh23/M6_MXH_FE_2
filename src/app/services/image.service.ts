@@ -27,7 +27,7 @@ export class ImageService {
     return this.httpClient.delete<Image>(API_URL + `/delete?idImage=${idImage}&idUser=${idUser}`);
   }
 
-  delete2(idImage: any, idUser: any): Observable<Image> {
+  deleteInDataBase(idImage: any, idUser: any): Observable<Image> {
     return this.httpClient.delete<Image>(API_URL + `/deleteImage?idImage=${idImage}&idUser=${idUser}`);
   }
 }

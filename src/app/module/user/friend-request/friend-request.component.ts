@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {User} from "../../../models/user";
 import {FriendRelationService} from "../../../services/friend-relation.service";
 import {Router} from "@angular/router";
+import {environment} from "../../../../environments/environment";
 
-const URL_HREF = "http://localhost:4200"
 declare var $: any;
 
 @Component({
@@ -40,6 +40,7 @@ export class FriendRequestComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    localStorage.setItem('Url', window.location.href);
     this.listRequestSend()
     this.listRequest()
     this.friendList()
@@ -104,10 +105,10 @@ export class FriendRequestComponent implements OnInit {
   }
 
   back() {
-    if (this.url == URL_HREF + '/user/listFriend/' + this.idUserLogIn) {
+    if (this.url == environment.localUrl + '/user/listFriend/' + this.idUserLogIn) {
       this.router.navigate(['user/listFriend', this.idUserLogIn]).then()
     }
-    if (this.url == URL_HREF + '/user/newsfeed') {
+    if (this.url == environment.localUrl + '/user/newsfeed') {
       this.router.navigate(['user/newsfeed']).then()
     }
   }
