@@ -4,6 +4,7 @@ import {UserService} from "../../../services/user.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {finalize, Observable} from "rxjs";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
+import {ListAvatarDTO} from "../../../models/list-avatar-dto";
 
 @Component({
   selector: 'app-edit-profile',
@@ -21,7 +22,11 @@ export class EditProfileComponent implements OnInit {
   currentUser: any
   avatar: string = "";
   cover: string = "";
+  gender?: any
   url: string = "null";
+  listImage?: ListAvatarDTO[]
+  imageDefault?: any
+  checkList = false
   updateForm = new FormGroup({
     phone: new FormControl('', [Validators.required, Validators.pattern('^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$')]),
     fullName: new FormControl('', [Validators.required]),
@@ -41,6 +46,7 @@ export class EditProfileComponent implements OnInit {
       this.currentUser = result;
       this.avatar = this.currentUser.avatar;
       this.cover = this.currentUser.cover;
+      this.gender = this.currentUser.gender;
       this.updateForm = new FormGroup({
         phone: new FormControl(this.currentUser.phone, [Validators.required, Validators.pattern('^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$')]),
         fullName: new FormControl(this.currentUser.fullName, [Validators.required]),
@@ -53,7 +59,7 @@ export class EditProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.listImageDefault()
   }
 
   update(): void {
@@ -61,6 +67,9 @@ export class EditProfileComponent implements OnInit {
     this.currentUser.phone = this.updateForm.value.phone
     this.currentUser.address = this.updateForm.value.address
     this.currentUser.favorite = this.updateForm.value.favorite
+    if (this.imageDefault != null && this.fb == null) {
+      this.currentUser.avatar = this.imageDefault
+    }
     if (this.fb != null) {
       this.currentUser.avatar = this.fb
     }
@@ -125,5 +134,28 @@ export class EditProfileComponent implements OnInit {
           console.log(url);
         }
       });
+  }
+
+  listImageDefault() {
+    this.userService.listImageDefault().subscribe(rs => {
+      this.listImage = rs
+    })
+  }
+
+  getNameImage(name: any) {
+    this.imageDefault = name
+    console.log(this.imageDefault)
+  }
+
+  cancelGetNameImage() {
+    this.imageDefault = null
+  }
+
+  openListImage() {
+    this.checkList = true
+  }
+
+  closeListImage() {
+    this.checkList = false
   }
 }

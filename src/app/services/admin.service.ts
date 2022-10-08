@@ -17,6 +17,10 @@ export class AdminService {
   }
 
   getAll(): Observable<User[]> {
-    return this.httpClient.get<User[]>(API_URL + '/getAllUser');
+    return this.httpClient.get<User[]>(API_URL + '/getAllUser', {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+      }
+    });
   }
 }

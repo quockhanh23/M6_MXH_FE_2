@@ -24,6 +24,10 @@ export class GroupDetailComponent implements OnInit {
       const id: any = paramMap.get('id');
       console.log("id idGroup: " + id)
       this.idGroup = id;
+      this.groupService.findById(id).subscribe(rs => {
+        console.log("vào đây")
+        this.theGroup = rs;
+      })
     })
     this.check()
   }

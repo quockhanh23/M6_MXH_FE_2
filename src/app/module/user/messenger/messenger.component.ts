@@ -37,6 +37,9 @@ export class MessengerComponent implements OnInit {
   checkDone = false
   checkButton = true
   checkConversation = true
+  checkOpenInfo = false
+  withMessage = 12
+  withInfo = 0
   fb: any;
   downloadURL!: Observable<string>;
 
@@ -180,6 +183,18 @@ export class MessengerComponent implements OnInit {
   openMessage() {
     this.checkConversation = true
     this.ngOnInit()
+  }
+
+  openInfo() {
+    this.checkOpenInfo = true
+    this.withMessage = 9
+    this.withInfo = 3
+  }
+
+  closeInfo() {
+    this.checkOpenInfo = false
+    this.withMessage = 12
+    this.withInfo = 0
   }
 
   changeBackgroundColor1() {

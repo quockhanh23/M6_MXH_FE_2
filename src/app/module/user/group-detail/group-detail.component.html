@@ -3,4 +3,35 @@
              [routerLink]="['/user/groupShare']"
              class="backButton title material-icons a1 a2 backArrowSpan">keyboard_backspace</span>
 </div>
-<button mat-raised-button color="primary">Tham gia nhóm</button>
+
+<div class="divFix">
+  <div class="row">
+    <div class="col-4">
+      <img style="width: 100%; height: 200px" src="{{theGroup?.coverGroup}}">
+      <h2>{{theGroup?.groupName}}</h2>
+      <span *ngIf="theGroup?.status == 'Public'">Nhóm công khai</span>&nbsp;
+      <span>{{theGroup?.numberUser}} thành viên</span><br>
+      <button style="width: 100%" mat-raised-button color="primary">Tham gia nhóm</button>
+    </div>
+    <div class="col-8" style="background-color: #e7e7e7">
+      <div class="row" style="border: #e7e7e7 1px solid">
+        <div class="col-9" style="background-color: white">
+          <h2>Thảo luận</h2>
+        </div>
+        <div class="col" align="right" style="background-color: white">
+          <button mat-raised-button color="primary">Tạo bài viết</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-7" style="background-color: white; margin-right: 10px; margin-top: 10px; margin-left: 10px">
+        </div>
+        <div class="col-4" style="border: #0a70b9 1px solid">
+          <h2>Giới thiệu</h2>
+          <h2>{{theGroup?.type}}</h2>
+          <h2 *ngIf="theGroup?.status == 'Public'">Nhóm công khai</h2>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

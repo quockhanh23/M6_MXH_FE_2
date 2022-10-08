@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
 import {User} from "../models/user";
+import {ListAvatarDTO} from "../models/list-avatar-dto";
 
 const API_URL = environment.apiUrl;
 
@@ -48,5 +49,9 @@ export class UserService {
 
   updateUserProfile(id: any, user: User): Observable<User> {
     return this.http.put<User>(API_URL + `/users/${id}`, user);
+  }
+
+  listImageDefault(): Observable<ListAvatarDTO[]> {
+    return this.http.get<ListAvatarDTO[]>(API_URL + '/listImageDefault')
   }
 }

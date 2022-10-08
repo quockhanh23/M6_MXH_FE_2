@@ -3,7 +3,27 @@
              [routerLink]="['/user/user-detail']"
              class="backButton title material-icons a1 a2 backArrowSpan">keyboard_backspace</span>
 </div>
-<div class="timeline">
+<div class="divFix">
+  <h2 *ngIf="!checkList" style="width: 18%" class="a1 a2" (click)="openListImage()">
+    Lựa chọn ảnh avatar mặc định
+  </h2>
+  <h2 *ngIf="checkList" style="width: 5%" class="a1 a2" (click)="closeListImage()">
+    Đóng
+  </h2>
+  <div *ngIf="imageDefault == null && checkList">
+    <div>
+      <div class="row">
+        <div class="col-2" *ngFor="let list of listImage">
+          <img style="width: 200px; height: 200px; border-radius: 5px" src="{{list?.name}}"><br>
+          <button *ngIf="imageDefault == null" (click)="getNameImage(list?.name)">Chọn</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="imageDefault != null && checkList">
+    <img style="width: 200px; height: 200px; border-radius: 5px" src="{{imageDefault}}">
+    <button (click)="cancelGetNameImage()">Bỏ chọn</button>
+  </div>
   <div id="page-contents">
     <div class="row">
       <div class="col-md-3">
@@ -15,7 +35,7 @@
             <div class="line"></div>
           </div>
           <div class="edit-block">
-            <div class="form-group col-12">
+            <div class="form-group col-12" *ngIf="imageDefault == null">
               <label for="avatar">{{changeImage}} đại diện</label>
               <input type="file"
                      id="avatar"
@@ -78,7 +98,8 @@
               <div class="row">
                 <div class="form-group col-xs-12">
                   <label for="my-favorite">Sở thích</label>
-                  <textarea formControlName="favorite" id="my-favorite" name="information" class="form-control" rows="4" cols="400"></textarea>
+                  <textarea formControlName="favorite" id="my-favorite" name="information" class="form-control" rows="4"
+                            cols="400"></textarea>
                 </div>
               </div>
               <button class="btn btn-primary">Lưu lại thay đổi</button>
@@ -89,3 +110,4 @@
     </div>
   </div>
 </div>
+

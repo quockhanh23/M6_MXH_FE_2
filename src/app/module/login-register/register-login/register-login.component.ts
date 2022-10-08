@@ -38,7 +38,6 @@ export class RegisterLoginComponent implements OnInit {
     fullName: new FormControl('', [Validators.required]),
     gender: new FormControl(''),
     newPhoneNumber: new FormControl('', [Validators.required, Validators.pattern('^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$')]),
-
   })
 
   returnUrl?: string;
@@ -81,8 +80,12 @@ export class RegisterLoginComponent implements OnInit {
             this.currentUser = result;
             localStorage.setItem('currentUser', JSON.stringify(result));
             this.userName = data.username
-            this.router.navigate([this.returnUrl]).then()
-            this.dialog.open(DialogLoginSuccessComponent)
+            setTimeout(() => {
+              this.router.navigate([this.returnUrl]).then()
+            }, 500)
+            setTimeout(() => {
+              this.dialog.open(DialogLoginSuccessComponent)
+            }, 200)
             setTimeout(() => {
               this.dialog.closeAll()
             }, 2000)
@@ -136,9 +139,6 @@ export class RegisterLoginComponent implements OnInit {
   }
 
   checkHRF() {
-    if (window.location.href == 'http://localhost:4200/') {
-      return true;
-    }
-    return false;
+    return window.location.href == 'http://localhost:4200/';
   }
 }

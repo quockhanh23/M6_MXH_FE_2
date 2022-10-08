@@ -3,7 +3,7 @@
              [routerLink]="['/user/user-detail']"
              class="backButton title material-icons a1 a2 backArrowSpan">keyboard_backspace</span>
 </div>
-<div class="bodyDiv">
+<div class="divFix">
   <h2>Tin của bạn</h2>
   <div class="row">
     <div *ngFor="let short of shortNew"
@@ -18,7 +18,7 @@
         </div>
         <div class="col-3"></div>
       </div>
-      <img style="width: 100%; height: border-box; border-radius: 5px" src="{{short.image}}" alt="Lỗi ảnh">
+      <img class="border-radius-5px" style="width: 100%; height: border-box;" src="{{short.image}}" alt="Lỗi ảnh">
       <p>{{short.content}}</p>
     </div>
     <div

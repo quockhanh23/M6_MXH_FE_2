@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {TheGroup} from "../models/the-group";
 import {environment} from "../../environments/environment";
+import {User} from "../models/user";
 
 const API_URL = environment.apiUrl + "/groups";
 
@@ -28,5 +29,9 @@ export class GroupService {
 
   check(idUser: any, idGroup: any): Observable<any> {
     return this.httpClient.get<any>(API_URL + `/check?idUser=${idUser}&idGroup=${idGroup}`);
+  }
+
+  findById(idGroup: any): Observable<TheGroup> {
+    return this.httpClient.get<TheGroup>(`http://localhost:8080/api/groups/${idGroup}`);
   }
 }

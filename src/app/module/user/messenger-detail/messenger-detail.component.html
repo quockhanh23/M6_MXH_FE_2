@@ -4,7 +4,7 @@
         class="backButton title material-icons a1 a2 backArrowSpan">keyboard_backspace</span>
 </div>
 
-<div style="margin-left: 5%; margin-right: 5%; ">
+<div class="divFix">
   <div class="row">
     <div class="col">
       <h2 style="margin-left: 2%" class="a2" *ngIf="idUserLogIn != user?.id">{{withUser}} {{user?.fullName}} </h2>
@@ -25,7 +25,7 @@
     </div>
   </div>
   <div class="col">
-    <div style="{{border}}; border-radius: 5px">
+    <div style="{{border}}" class="border-radius-5px">
       <div style="background-color: #5bc0de; border: #b2dba1 1px solid">
         <img *ngIf="idUserLogIn != conversation?.idReceiver?.id"
              class="imgFix" style="margin-left: 10px"
@@ -104,16 +104,16 @@
                 </sup>
               </div>
               <div class="col">
-                <button *ngIf="conversation != null && checkButton"
-                        style="width: 96%; height: 60px; font-size: 18px" mat-raised-button color="accent"
+                <button *ngIf="conversation != null && checkButton" class="width-96-percent"
+                        style="height: 60px; font-size: 18px" mat-raised-button color="accent"
                         type="summit">Gửi
                 </button>
                 <div style="margin-left: 60px; margin-top: 10px" *ngIf="checkDone">
                   <mat-spinner [diameter]="30"></mat-spinner>
                   <span>Đang tải ảnh</span>
                 </div>
-                <button *ngIf="conversation == null" disabled
-                        style="width: 96%; height: 60px; font-size: 18px" mat-raised-button color="accent"
+                <button *ngIf="conversation == null" disabled class="width-96-percent"
+                        style="height: 60px; font-size: 18px" mat-raised-button color="accent"
                         type="summit">Gửi
                 </button>
               </div>

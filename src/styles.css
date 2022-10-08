@@ -135,6 +135,22 @@
   font-size: 32px;
 }
 
+.width-100-percent {
+  width: 100%
+}
+
+.width-96-percent {
+  width: 96%
+}
+
+.border-radius-5px {
+  border-radius: 5px
+}
+
+.color-whitesmoke{
+  color: whitesmoke
+}
+
 .imgFix {
   width: 50px;
   height: 50px;
@@ -142,7 +158,7 @@
   margin-top: 5px
 }
 
-.bodyDiv {
+.divFix {
   margin-left: 5%;
   margin-right: 5%;
 }
@@ -261,20 +277,17 @@ section .wrapper {
 }
 
 .btn-primary {
-  background: #27aae1;
   padding: 7px 25px;
   border: none;
   font-size: 14px;
-  border-radius: 4px;
-  color: #fff;
   position: relative;
   font-weight: 600;
   outline: none;
-  border-radius: 30px;
 }
 
 .btn-primary:hover {
-  background: #149AC9;
+  color: #ffc107;
+  background: #0b30ab;
   transition: all 1s;
 }
 

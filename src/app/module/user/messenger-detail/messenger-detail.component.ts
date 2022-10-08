@@ -157,6 +157,7 @@ export class MessengerDetailComponent implements OnInit {
   }
 
   back() {
+    console.log(this.url)
     if (this.url == environment.localUrl + '/user/people-detail/' + this.idUser) {
       this.router.navigate(['user/people-detail', this.idUser]).then(rs => {
         console.log(rs)
@@ -167,7 +168,6 @@ export class MessengerDetailComponent implements OnInit {
         console.log(rs)
       })
     }
-    this.router.navigate(['user/people-detail', this.idUser]).then()
   }
 
   onFileSelected(event: any) {

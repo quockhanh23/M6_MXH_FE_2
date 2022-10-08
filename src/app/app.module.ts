@@ -12,6 +12,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from "./material/material.module";
 import {HeaderComponent} from './header/header.component';
 import {NotificationsModule} from "./notifications/notifications.module";
+import {MatMenuModule} from "@angular/material/menu";
 
 
 @NgModule({
@@ -21,19 +22,20 @@ import {NotificationsModule} from "./notifications/notifications.module";
     HeaderComponent,
 
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    AngularFireStorageModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig, "cloud"),
-    BrowserAnimationsModule,
-    MaterialModule,
-    NotificationsModule
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        AngularFireStorageModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig, "cloud"),
+        BrowserAnimationsModule,
+        MaterialModule,
+        NotificationsModule,
+        MatMenuModule
 
-  ],
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

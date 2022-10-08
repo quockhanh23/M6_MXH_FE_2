@@ -24,9 +24,9 @@
         </h2>
         <img class="imageRequestFriend"
              src="{{fri?.avatar}}">
-        <button style="width: 100%" (click)="acceptFriend(fri?.id)" mat-raised-button color="primary">Xác nhận
+        <button class="width-100-percent" (click)="acceptFriend(fri?.id)" mat-raised-button color="primary">Xác nhận
         </button>
-        <button style="width: 100%" (click)="deleteRequest(fri?.id)" mat-raised-button color="warn">Từ chối</button>
+        <button class="width-100-percent" (click)="deleteRequest(fri?.id)" mat-raised-button color="warn">Từ chối</button>
       </div>
     </div>
   </div>
@@ -49,9 +49,8 @@
           matTooltip="Xem trang cá nhân" routerLink="/user/people-detail/{{fr?.id}}">{{fr?.fullName}}</h2>
       <img class="imageRequestFriend"
            src="{{fr?.avatar}}">
-      <button style="width: 100%" (click)="deleteRequest(fr?.id)" mat-raised-button color="primary">Hủy yêu cầu
+      <button class="width-100-percent" (click)="deleteRequest(fr?.id)" mat-raised-button color="primary">Hủy yêu cầu
       </button>
-      <div style="height: 37px"></div>
     </div>
   </div>
   <hr>
@@ -78,7 +77,9 @@
             <span class="material-icons">how_to_reg</span>
             <span class="spanFontSize">Bạn bè</span>
           </button>
-          <button  [routerLink]="['/user/messengerDetail', friend?.id]" style="width: 50%" mat-raised-button color="primary">
+          <button [routerLink]="['/user/messengerDetail', friend?.id]"
+                  style="width: 50%" mat-raised-button
+                  color="primary">
             <span class="material-icons">offline_bolt</span>
             <span class="spanFontSize">Nhắn tin</span>
           </button>
@@ -104,7 +105,7 @@
         <img class="imageRequestFriend"
              src="{{people?.avatar}}">
         <div style="height: 37px">
-          <button style="width: 100%" mat-raised-button color="primary" (click)="sendRequestFriend(people?.id)">
+          <button class="width-100-percent" mat-raised-button color="primary" (click)="sendRequestFriend(people?.id)">
             <span class="material-icons">person_add_alt_1</span>
             <span class="spanFontSize">&nbsp;Kết bạn</span>
           </button>
