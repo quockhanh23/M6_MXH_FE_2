@@ -43,4 +43,12 @@ export class MessengerService {
   findAllByConversationOrderById(idConversation: string): Observable<Messenger[]> {
     return this.httpClient.get<Messenger[]>(API_URL + `/findAllByConversationOrderById?idConversation=${idConversation}`);
   }
+
+  getAllMessageHavePhoto(idConversation: string): Observable<Messenger[]> {
+    return this.httpClient.get<Messenger[]>(API_URL + `/getAllMessageHavePhoto?idConversation=${idConversation}`);
+  }
+
+  getAllMessageHaveLink(idConversation: string): Observable<any> {
+    return this.httpClient.get<any>(API_URL + `/getAllMessageHaveLink?idConversation=${idConversation}`);
+  }
 }

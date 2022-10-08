@@ -19,10 +19,13 @@ export class MessengerComponent implements OnInit {
   @Output() newItemEvent = new EventEmitter<string>();
   idConversation?: string
   idUserLogIn = localStorage.getItem("USERID")
+  url = localStorage.getItem("Url")
   listFriend?: User[];
   conversations?: Conversation[];
   conversation?: Conversation;
   messengers?: Messenger[]
+  messengersHavePhoto?: Messenger[]
+  messengersHaveLink? = []
   messenger?: Messenger
   userName?: User
   userName1?: User
@@ -33,6 +36,8 @@ export class MessengerComponent implements OnInit {
   content: any;
   myScrollContainer: any;
   count = 0
+  countMessengersHavePhoto = false
+  countMessengersHaveLink = false
   background: any
   checkDone = false
   checkButton = true
@@ -60,6 +65,7 @@ export class MessengerComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    localStorage.setItem('UrlMessage', window.location.href);
     this.friendRelationService.listFriend(this.idUserLogIn).subscribe(rs => {
       this.listFriend = rs
       try {
@@ -97,6 +103,8 @@ export class MessengerComponent implements OnInit {
       // @ts-ignore
       this.messengerService.findAllByConversationOrderById(this.idConversation).subscribe(rs => {
         this.messengers = rs
+        this.getAllMessageHavePhoto()
+        this.getAllMessageHaveLink()
         try {
           this.count = rs.length
         } catch (err) {
@@ -132,6 +140,8 @@ export class MessengerComponent implements OnInit {
       // @ts-ignore
       this.messengerService.findAllByConversationOrderById(this.idConversation).subscribe(rs => {
         this.messengers = rs
+        this.getAllMessageHavePhoto()
+        this.getAllMessageHaveLink()
         this.fb = null
         try {
           this.count = rs.length
@@ -211,5 +221,31 @@ export class MessengerComponent implements OnInit {
 
   changeBackgroundColor4() {
     this.background = 'background-color: #fcfcfc'
+  }
+
+  getAllMessageHavePhoto() {
+    // @ts-ignore
+    this.messengerService.getAllMessageHavePhoto(this.idConversation).subscribe(rs => {
+      this.messengersHavePhoto = rs
+      if (rs.length == 0) {
+        this.countMessengersHavePhoto = true
+      } else {
+        this.countMessengersHavePhoto = false
+      }
+      console.log(this.countMessengersHavePhoto)
+    })
+  }
+
+  getAllMessageHaveLink() {
+    // @ts-ignore
+    this.messengerService.getAllMessageHaveLink(this.idConversation).subscribe(rs => {
+      this.messengersHaveLink = rs
+      if (rs.length == 0) {
+        this.countMessengersHaveLink = true
+      } else {
+        this.countMessengersHaveLink = false
+      }
+      console.log(this.countMessengersHaveLink)
+    })
   }
 }

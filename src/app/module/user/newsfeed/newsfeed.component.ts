@@ -90,6 +90,7 @@ export class NewsfeedComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    localStorage.removeItem('UrlMessage')
     localStorage.setItem('Url', window.location.href);
     this.allPostPublic()
     this.getListFriends(this.idUserLogIn)

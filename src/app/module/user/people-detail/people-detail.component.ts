@@ -26,6 +26,7 @@ import {AnswerCommentService} from "../../../services/answer-comment.service";
 export class PeopleDetailComponent implements OnInit {
 
   idUserLogIn = localStorage.getItem("USERID")
+  urlMessage = localStorage.getItem("UrlMessage")
   friendRelations?: any;
   friend?: FriendRelation;
   user?: User[];
@@ -362,6 +363,13 @@ export class PeopleDetailComponent implements OnInit {
   removeFriend() {
     this.friendRelationService.unfriend(this.idUserLogIn, this.idUser).subscribe(rs => {
       this.checkRemoveFriend = false
+    })
+  }
+
+  backToMessage() {
+    console.log(this.urlMessage)
+    this.router.navigate(['user/messenger']).then(rs => {
+      console.log(rs)
     })
   }
 }

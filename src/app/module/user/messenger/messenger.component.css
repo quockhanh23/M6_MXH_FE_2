@@ -9,7 +9,20 @@
   overflow-y: scroll; /* Show vertical scrollbar */
   overflow-x: hidden; /* Show horizontal scrollbar */
 }
-#scroll2{
+
+#scroll2 {
   overflow: scroll;
   height: 638px;
+}
+
+#scroll3 {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 150px;
+}
+
+#scroll4 {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 350px;
 }

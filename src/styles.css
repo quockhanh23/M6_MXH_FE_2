@@ -98,14 +98,14 @@
 }
 
 .messageContentLeft {
-  padding: 5px;
+  padding: 5px 10px;
   border-radius: 12px;
   background-color: #e7e7e7;
   color: #3c3c3c
 }
 
 .messageContentRight {
-  padding: 5px;
+  padding: 5px 10px;
   border-radius: 12px;
   background-color: #1c75bc;
   color: whitesmoke
@@ -147,7 +147,7 @@
   border-radius: 5px
 }
 
-.color-whitesmoke{
+.color-whitesmoke {
   color: whitesmoke
 }
 
@@ -161,6 +161,10 @@
 .divFix {
   margin-left: 5%;
   margin-right: 5%;
+}
+
+.break-word {
+  word-wrap: break-word;
 }
 
 input {

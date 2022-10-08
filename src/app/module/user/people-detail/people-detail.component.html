@@ -18,7 +18,11 @@
               <ul class="list-inline profile-menu">
                 <li>
                   <sub><span class="material-icons">grade</span></sub>
-                  <a [routerLink]="['/user/newsfeed']">Quay lại trang chính</a>
+                  <a [routerLink]="['/user/newsfeed']">Về trang chủ</a>
+                </li>
+                <li *ngIf="urlMessage == 'http://localhost:4200/user/messenger'">
+                  <sub><span class="material-icons">grade</span></sub>
+                  <a (click)="backToMessage()">Quay lại tin nhắn</a>
                 </li>
               </ul>
             </div>
