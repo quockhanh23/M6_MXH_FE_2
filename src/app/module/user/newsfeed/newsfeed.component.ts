@@ -84,7 +84,6 @@ export class NewsfeedComponent implements OnInit {
     }, error => {
       console.log("Lỗi: " + error)
     });
-
     this.shortNewService.newDay().subscribe()
     this.allPeople()
   }
@@ -125,7 +124,7 @@ export class NewsfeedComponent implements OnInit {
     // @ts-ignore
     this.likePostService.createLike(likePost, idPost, this.idUser).subscribe(result => {
       this.likePost = result
-      this.ngOnInit()
+      this.allPostPublic()
     }, error => {
       console.log("Lỗi: " + error)
     })
@@ -147,7 +146,7 @@ export class NewsfeedComponent implements OnInit {
     this.likePostService.createDisLike(disLikePost, idPost, this.idUser).subscribe(result => {
       this.disLikePost = result
       console.log(result)
-      this.ngOnInit()
+      this.allPostPublic()
     }, error => {
       console.log("Lỗi: " + error)
     })
@@ -169,7 +168,7 @@ export class NewsfeedComponent implements OnInit {
     this.likePostService.createHeart(heart, idPost, this.idUser).subscribe(result => {
       this.disLikePost = result
       console.log(result)
-      this.ngOnInit()
+      this.allPostPublic()
     }, error => {
       console.log("Lỗi: " + error)
     })
@@ -289,7 +288,7 @@ export class NewsfeedComponent implements OnInit {
     }, error => {
       console.log("Lỗi: " + error)
     })
-    this.ngOnInit()
+    this.allComment()
   }
 
   createDisLikeComment(idComment: any) {
@@ -307,11 +306,11 @@ export class NewsfeedComponent implements OnInit {
     this.likeCommentService.createDisLikeComment(dislikeComment, idComment, this.idUser).subscribe(rs => {
       this.disLikePost = rs
       console.log(rs)
-      this.ngOnInit()
+      this.allComment()
     }, error => {
       console.log("Lỗi: " + error)
     })
-    this.ngOnInit()
+    this.allComment()
   }
 
   getListFriends(idUser: any) {
