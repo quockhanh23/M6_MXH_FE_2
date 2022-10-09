@@ -94,11 +94,7 @@ export class PeopleDetailComponent implements OnInit {
       }, error => {
         console.log("Lỗi: " + error)
       })
-      this.postService.getAllPostByUser(id).subscribe(result => {
-        this.post = result
-      }, error => {
-        console.log("Lỗi: " + error)
-      })
+
       this.friendRelationService.agree(this.idUserLogIn, id).subscribe(rs => {
         try {
           if (rs.length > 0) {
@@ -109,15 +105,25 @@ export class PeopleDetailComponent implements OnInit {
         }
       })
     })
+    this.getAllPostByUser()
+    this.allComment()
   }
 
   ngOnInit(): void {
     localStorage.setItem('Url', window.location.href);
-    this.allComment()
+    this.reloadComment()
     this.allAnswerComment()
     this.listRequest()
     this.friendCheck()
     this.friendList()
+  }
+  getAllPostByUser(){
+    // @ts-ignore
+    this.postService.getAllPostByUser(this.idUser).subscribe(result => {
+      this.post = result
+    }, error => {
+      console.log("Lỗi: " + error)
+    })
   }
 
   friendList() {
@@ -166,10 +172,10 @@ export class PeopleDetailComponent implements OnInit {
     // @ts-ignore
     this.likePostService.createLike(likePost, idPost, this.idUserLogIn).subscribe(result => {
       this.likePost = result
-      this.ngOnInit()
+      this.getAllPostByUser()
     }, error => {
       console.log("Lỗi: " + error)
-      this.ngOnInit()
+      this.getAllPostByUser()
     })
   }
 
@@ -188,10 +194,10 @@ export class PeopleDetailComponent implements OnInit {
     this.likePostService.createDisLike(disLikePost, idPost, this.idUserLogIn).subscribe(result => {
       this.disLikePost = result
       console.log(result)
-      this.ngOnInit()
+      this.getAllPostByUser()
     }, error => {
       console.log("Lỗi: " + error)
-      this.ngOnInit()
+      this.getAllPostByUser()
     })
   }
 
@@ -209,11 +215,12 @@ export class PeopleDetailComponent implements OnInit {
     // @ts-ignore
     this.likePostService.createHeart(heart, idPost, this.idUserLogIn).subscribe(result => {
       this.disLikePost = result
+      this.getAllPostByUser()
       console.log(result)
     }, error => {
       console.log("Lỗi: " + error)
     })
-    this.ngOnInit()
+    this.getAllPostByUser()
   }
 
   allAnswerComment() {
@@ -234,6 +241,37 @@ export class PeopleDetailComponent implements OnInit {
     })
   }
 
+
+  reloadComment() {
+    console.log("vào hàm reloadComment")
+    this.commentService.reloadComment().subscribe(result => {
+      // @ts-ignore
+      this.comment = result
+    }, error => {
+      console.log("Lỗi: " + error)
+    })
+  }
+
+  reloadLikeAllComment() {
+    console.log("vào hàm reloadLikeAllComment")
+    this.commentService.reloadLikeAllComment().subscribe(result => {
+      // @ts-ignore
+      this.comment = result
+    }, error => {
+      console.log("Lỗi: " + error)
+    })
+  }
+
+  reloadDisLikeAllComment() {
+    console.log("vào hàm reloadDisLikeAllComment")
+    this.commentService.reloadDisLikeAllComment().subscribe(result => {
+      // @ts-ignore
+      this.comment = result
+    }, error => {
+      console.log("Lỗi: " + error)
+    })
+  }
+
   createComment(idPost: any) {
     console.log("vào hàm createComment")
     const comment = {
@@ -246,7 +284,7 @@ export class PeopleDetailComponent implements OnInit {
       }
     }
     // @ts-ignore
-    this.commentService.save(comment, this.idUserLogIn, idPost).subscribe(rs => {
+    this.commentService.createComment(comment, this.idUserLogIn, idPost).subscribe(rs => {
       console.log("Đã vào")
       // @ts-ignore
       this.commentOne = rs
@@ -272,11 +310,11 @@ export class PeopleDetailComponent implements OnInit {
     this.likeCommentService.createLikeComment(commentLike, idComment, this.idUserLogIn).subscribe(rs => {
       this.disLikePost = rs
       console.log(rs)
-      this.ngOnInit()
+      this.reloadLikeAllComment()
     }, error => {
       console.log("Lỗi: " + error)
     })
-    this.ngOnInit()
+    this.reloadLikeAllComment()
   }
 
   createDisLikeComment(idComment: any) {
@@ -292,11 +330,11 @@ export class PeopleDetailComponent implements OnInit {
     // @ts-ignore
     this.likeCommentService.createDisLikeComment(dislikeComment, idComment, this.idUserLogIn).subscribe(rs => {
       this.disLikePost = rs
-      this.ngOnInit()
+      this.reloadDisLikeAllComment()
     }, error => {
       console.log("Lỗi: " + error)
     })
-    this.ngOnInit()
+    this.reloadDisLikeAllComment()
   }
 
   createAnswerComment(idComment: any) {

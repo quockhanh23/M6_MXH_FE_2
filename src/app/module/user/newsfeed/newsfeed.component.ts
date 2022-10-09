@@ -86,6 +86,7 @@ export class NewsfeedComponent implements OnInit {
     });
     this.shortNewService.newDay().subscribe()
     this.allPeople()
+    this.allComment()
   }
 
   ngOnInit(): void {
@@ -103,7 +104,7 @@ export class NewsfeedComponent implements OnInit {
     this.postService.allPost().subscribe(result => {
       this.post = result
       // console.log("Kiểu dữ liệu: " + JSON.stringify(result))
-      this.allComment()
+      this.reloadComment()
     }, error => {
       console.log("Lỗi: " + error)
     })
@@ -245,6 +246,36 @@ export class NewsfeedComponent implements OnInit {
     })
   }
 
+  reloadComment() {
+    console.log("vào hàm reloadComment")
+    this.commentService.reloadComment().subscribe(result => {
+      // @ts-ignore
+      this.comment = result
+    }, error => {
+      console.log("Lỗi: " + error)
+    })
+  }
+
+  reloadLikeAllComment() {
+    console.log("vào hàm reloadLikeAllComment")
+    this.commentService.reloadLikeAllComment().subscribe(result => {
+      // @ts-ignore
+      this.comment = result
+    }, error => {
+      console.log("Lỗi: " + error)
+    })
+  }
+
+  reloadDisLikeAllComment() {
+    console.log("vào hàm reloadDisLikeAllComment")
+    this.commentService.reloadDisLikeAllComment().subscribe(result => {
+      // @ts-ignore
+      this.comment = result
+    }, error => {
+      console.log("Lỗi: " + error)
+    })
+  }
+
   // Tạo comment
   createComment(idPost: any) {
     console.log("vào hàm createComment")
@@ -258,15 +289,15 @@ export class NewsfeedComponent implements OnInit {
       }
     }
     // @ts-ignore
-    this.commentService.save(comment, this.idUser, idPost).subscribe(rs => {
+    this.commentService.createComment(comment, this.idUser, idPost).subscribe(rs => {
       console.log("Đã vào")
       // @ts-ignore
       this.commentOne = rs
+      this.allPostPublic()
       console.log("Đã vào" + rs)
     }, error => {
       console.log("Lỗi: " + error)
     })
-    this.ngOnInit()
   }
 
   createLikeComment(idComment: any) {
@@ -284,11 +315,11 @@ export class NewsfeedComponent implements OnInit {
     this.likeCommentService.createLikeComment(commentLike, idComment, this.idUser).subscribe(rs => {
       this.disLikePost = rs
       console.log(rs)
-      this.ngOnInit()
+      this.reloadLikeAllComment()
     }, error => {
       console.log("Lỗi: " + error)
     })
-    this.allComment()
+    this.reloadLikeAllComment()
   }
 
   createDisLikeComment(idComment: any) {
@@ -306,11 +337,11 @@ export class NewsfeedComponent implements OnInit {
     this.likeCommentService.createDisLikeComment(dislikeComment, idComment, this.idUser).subscribe(rs => {
       this.disLikePost = rs
       console.log(rs)
-      this.allComment()
+      this.reloadDisLikeAllComment()
     }, error => {
       console.log("Lỗi: " + error)
     })
-    this.allComment()
+    this.reloadDisLikeAllComment()
   }
 
   getListFriends(idUser: any) {

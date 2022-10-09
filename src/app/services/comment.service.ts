@@ -18,6 +18,18 @@ export class CommentService {
     return this.httpClient.get<Comment[]>(API_URL + `/allComment?id=${id}`);
   }
 
+  reloadComment(): Observable<Comment[]> {
+    return this.httpClient.get<Comment[]>(API_URL + '/reloadComment');
+  }
+
+  reloadLikeAllComment(): Observable<Comment[]> {
+    return this.httpClient.get<Comment[]>(API_URL + '/reloadLikeAllComment');
+  }
+
+  reloadDisLikeAllComment(): Observable<Comment[]> {
+    return this.httpClient.get<Comment[]>(API_URL + '/reloadDisLikeAllComment');
+  }
+
   getAll(): Observable<Comment[]> {
     return this.httpClient.get<Comment[]>(API_URL + '/all');
   }
@@ -26,7 +38,7 @@ export class CommentService {
     return this.httpClient.delete<AnswerComment>(API_URL + `/deleteComment?idUser=${idUser}&idComment=${idComment}&idPost=${idPost}`);
   }
 
-  save(comment: Comment, idUser: any, idPost: any): Observable<Comment> {
+  createComment(comment: Comment, idUser: any, idPost: any): Observable<Comment> {
     return this.httpClient.post<Comment>(API_URL + `/createComment?idUser=${idUser}&idPost=${idPost}`, comment)
   }
 }
