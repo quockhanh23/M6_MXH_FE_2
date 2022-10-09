@@ -27,7 +27,6 @@ export class PeopleDetailComponent implements OnInit {
 
   idUserLogIn = localStorage.getItem("USERID")
   urlMessage = localStorage.getItem("UrlMessage")
-  urlUserDetail = localStorage.getItem("UrlUserDetail")
   url = localStorage.getItem("Url")
   friendRelations?: any;
   friend?: FriendRelation;
@@ -243,7 +242,6 @@ export class PeopleDetailComponent implements OnInit {
       console.log("Lỗi: " + error)
     })
   }
-
 
   reloadComment() {
     console.log("vào hàm reloadComment")
