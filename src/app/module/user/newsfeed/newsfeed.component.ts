@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {UserService} from "../../../services/user.service";
 import {User} from "../../../models/user";
 import {FriendRelationService} from "../../../services/friend-relation.service";
@@ -25,7 +25,7 @@ import {AngularFireStorage} from "@angular/fire/compat/storage";
   templateUrl: './newsfeed.component.html',
   styleUrls: ['./newsfeed.component.css']
 })
-export class NewsfeedComponent implements OnInit {
+export class NewsfeedComponent implements OnInit, OnDestroy {
 
   currentUser: string = "";
   idUser: string | undefined;
@@ -400,5 +400,12 @@ export class NewsfeedComponent implements OnInit {
     }, error => {
       console.log(error)
     })
+  }
+
+  ngOnDestroy() {
+    console.log('ChildComponent:OnDestroy');
+    localStorage.removeItem('Url')
+    localStorage.removeItem('UrlMessage')
+    localStorage.removeItem('UrlUserDetail')
   }
 }

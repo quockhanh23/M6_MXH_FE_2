@@ -37,6 +37,7 @@ export class UserDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    localStorage.setItem('UrlUserDetail', window.location.href);
     this.shortNewService.newDay().subscribe()
   }
 }

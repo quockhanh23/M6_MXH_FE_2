@@ -27,6 +27,8 @@ export class PeopleDetailComponent implements OnInit {
 
   idUserLogIn = localStorage.getItem("USERID")
   urlMessage = localStorage.getItem("UrlMessage")
+  urlUserDetail = localStorage.getItem("UrlUserDetail")
+  url = localStorage.getItem("Url")
   friendRelations?: any;
   friend?: FriendRelation;
   user?: User[];
@@ -117,7 +119,8 @@ export class PeopleDetailComponent implements OnInit {
     this.friendCheck()
     this.friendList()
   }
-  getAllPostByUser(){
+
+  getAllPostByUser() {
     // @ts-ignore
     this.postService.getAllPostByUser(this.idUser).subscribe(result => {
       this.post = result
@@ -409,5 +412,23 @@ export class PeopleDetailComponent implements OnInit {
     this.router.navigate(['user/messenger']).then(rs => {
       console.log(rs)
     })
+  }
+
+  backToRequest() {
+    console.log(this.url)
+    this.router.navigate(['user/requests']).then(rs => {
+      console.log(rs)
+    })
+  }
+
+  backToUserDetail() {
+    console.log(this.url)
+    this.router.navigate(['user/listFriend', this.idUserLogIn]).then(rs => {
+      console.log(rs)
+    })
+  }
+
+  checkUrl() {
+    return this.url == 'http://localhost:4200/user/listFriend/' + this.idUserLogIn;
   }
 }

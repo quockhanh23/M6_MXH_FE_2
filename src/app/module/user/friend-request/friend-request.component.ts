@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {User} from "../../../models/user";
 import {FriendRelationService} from "../../../services/friend-relation.service";
 import {Router} from "@angular/router";
-import {environment} from "../../../../environments/environment";
 
 declare var $: any;
 
@@ -26,7 +25,6 @@ export class FriendRequestComponent implements OnInit {
   px = 'px'
   myRequest = 'Những người bạn đã gửi lời mời'
   peopleRequest = 'Lời mời kết bạn'
-  url = localStorage.getItem("Url")
   listFriend?: User[];
   listPeople?: User[];
   heightFriendList: any
@@ -105,12 +103,7 @@ export class FriendRequestComponent implements OnInit {
   }
 
   back() {
-    if (this.url == environment.localUrl + '/user/listFriend/' + this.idUserLogIn) {
-      this.router.navigate(['user/listFriend', this.idUserLogIn]).then()
-    }
-    if (this.url == environment.localUrl + '/user/newsfeed') {
-      this.router.navigate(['user/newsfeed']).then()
-    }
+    this.router.navigate(['user/newsfeed']).then()
   }
 
   friendList() {

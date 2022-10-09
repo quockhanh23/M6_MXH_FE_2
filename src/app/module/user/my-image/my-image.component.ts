@@ -35,7 +35,10 @@ export class MyImageComponent implements OnInit {
       this.imageService.allImageOfUser(id).subscribe(result => {
         this.images = result
         this.count = result.length
-        if (this.count < 5) {
+        if (this.count  == 0) {
+          this.height = 'height: 450px'
+        }
+        if (this.count < 5 && this.count > 0) {
           this.height = 'height: 320px'
         }
         if (this.count < 10 && this.count > 5) {

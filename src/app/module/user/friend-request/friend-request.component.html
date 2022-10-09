@@ -1,6 +1,6 @@
 <div class="backArrowDiv">
        <span matTooltip="Quay lại"
-             (click)="back()"
+             [routerLink]="['/user/newsfeed']"
              class="backButton title material-icons a1 a2 backArrowSpan">keyboard_backspace</span>
 </div>
 <div class="formComponent" style="background-color: #fcfcfc; border-radius: 5px; padding-top: 10px">
@@ -26,7 +26,8 @@
              src="{{fri?.avatar}}">
         <button class="width-100-percent" (click)="acceptFriend(fri?.id)" mat-raised-button color="primary">Xác nhận
         </button>
-        <button class="width-100-percent" (click)="deleteRequest(fri?.id)" mat-raised-button color="warn">Từ chối</button>
+        <button class="width-100-percent" (click)="deleteRequest(fri?.id)" mat-raised-button color="warn">Từ chối
+        </button>
       </div>
     </div>
   </div>

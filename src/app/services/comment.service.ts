@@ -14,10 +14,6 @@ export class CommentService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getAllComment(id: number): Observable<Comment[]> {
-    return this.httpClient.get<Comment[]>(API_URL + `/allComment?id=${id}`);
-  }
-
   reloadComment(): Observable<Comment[]> {
     return this.httpClient.get<Comment[]>(API_URL + '/reloadComment');
   }

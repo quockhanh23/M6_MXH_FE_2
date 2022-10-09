@@ -24,6 +24,14 @@
                   <sub><span class="material-icons">grade</span></sub>
                   <a (click)="backToMessage()">Quay lại tin nhắn</a>
                 </li>
+                <li *ngIf="url == 'http://localhost:4200/user/requests'">
+                  <sub><span class="material-icons">grade</span></sub>
+                  <a (click)="backToRequest()">Quay lại trang tìm bạn</a>
+                </li>
+                <li *ngIf="checkUrl()">
+                  <sub><span class="material-icons">grade</span></sub>
+                  <a (click)="backToUserDetail()">Quay lại danh sách bạn bè</a>
+                </li>
               </ul>
             </div>
             <div class="col-md">
