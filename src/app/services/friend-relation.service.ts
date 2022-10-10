@@ -39,8 +39,8 @@ export class FriendRelationService {
     return this.httpClient.get<FriendRelation[]>(API_URL + `/friendCheck?idUser=${idUser}`);
   }
 
-  everyone(idUser: any): Observable<any> {
-    return this.httpClient.get<any>(API_URL + `/everyone?idUser=${idUser}`);
+  friendSuggestion(idUser: any): Observable<any> {
+    return this.httpClient.get<any>(API_URL + `/friendSuggestion?idUser=${idUser}`);
   }
 
   getAllNotFriend(id: string): Observable<User[]> {

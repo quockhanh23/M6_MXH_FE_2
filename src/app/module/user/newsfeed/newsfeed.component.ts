@@ -226,9 +226,9 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
       });
   }
 
-  // Hiển thị 10 người bên phải
+  // Hiển thị 12 người bên phải (gợi ý kết bạn)
   allPeople() {
-    this.friendRelationService.everyone(this.idUser).subscribe(result => {
+    this.friendRelationService.friendSuggestion(this.idUser).subscribe(result => {
       this.users = result
     }, error => {
       console.log("Lỗi: " + error)
