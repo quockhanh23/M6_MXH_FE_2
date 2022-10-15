@@ -221,7 +221,7 @@
                           </div>
                           <div *ngIf="an?.comment?.id === c.id" class="col-1">
                             <span class="font-size-15">
-                        {{c.createAt | date:"hh:mm|dd/MM"}}</span>
+                        {{an?.createAt | date:"HH:MM|dd/MM"}}</span>
                           </div>
                         </div>
                       </div>
@@ -229,7 +229,7 @@
                   </div>
                   <div class="col-3">
                     <span class="font-size-15">
-                        {{c.createAt | date:"hh:mm | dd/MM/yyyy" }}
+                        {{c.createAt | date:"HH:MM | dd/MM/yyyy" }}
                     </span>
                   </div>
                 </div>
