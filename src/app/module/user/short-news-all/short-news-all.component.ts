@@ -17,6 +17,7 @@ export class ShortNewsAllComponent implements OnInit {
   shortNewCreate?: ShortNews
   count?: any;
   height?: string
+  myScrollContainer: any;
 
   shortNewForm: FormGroup = new FormGroup({
     content: new FormControl("",),
@@ -29,6 +30,7 @@ export class ShortNewsAllComponent implements OnInit {
 
   ngOnInit(): void {
     this.allShortNews()
+    this.scrollToBottom();
   }
 
   allShortNews() {
@@ -80,5 +82,17 @@ export class ShortNewsAllComponent implements OnInit {
 
   closeCreate() {
     this.check = false;
+  }
+
+  ngAfterViewInit() {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom(): void {
+    try {
+      this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+    } catch (err) {
+      console.log("lỗi scroll")
+    }
   }
 }

@@ -31,6 +31,7 @@ import { GroupSharedComponent } from './group-shared/group-shared.component';
 import { GroupDetailComponent } from './group-detail/group-detail.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { ListImageDefaultComponent } from './list-image-default/list-image-default.component';
+import { SavedListComponent } from './saved-list/saved-list.component';
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import { ListImageDefaultComponent } from './list-image-default/list-image-defau
     GroupSharedComponent,
     GroupDetailComponent,
     ListImageDefaultComponent,
+    SavedListComponent,
   ],
   exports: [
     EditProfileComponent

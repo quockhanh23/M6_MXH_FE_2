@@ -1,34 +1,32 @@
 <div class="backArrowDiv">
        <span matTooltip="Quay lại"
-             [routerLink]="['/user/user-detail']"
+             [routerLink]="['/user/newsfeed']"
              class="backButton title material-icons a1 a2 backArrowSpan">keyboard_backspace</span>
 </div>
-<div class="divFix">
-  <h2>Tin của bạn</h2>
-  <div class="row">
+<h2 align="center" class="a1 a2">
+  <sub><span style="color: #1c75bc; font-size: 22px;"
+             class="material-icons">recent_actors
+        </span></sub>&nbsp;Tin của bạn
+</h2>
+<div class="divFix" style="background-color: #faf7f7; border-radius: 5px">
+
+  <div class="row" style="border-radius: 10px;" #scrollMe [scrollTop]="scrollMe.scrollHeight"
+       id="scroll">
     <div *ngFor="let short of shortNew"
-         style="background: wheat; margin-right: 15px; border-radius: 10px; width: 200px; height: 250px; border: 1px solid"
-         class="fixCol">
-  <span *ngIf="short?.user?.id == idUserLogIn" matTooltip="Xóa" (click)="delete(short.id)"
-        class="a1 material-icons">highlight_off</span>
+         style="background:wheat; margin-right: 15px; height: 220px; width: 160px;
+           border-radius: 10px; border: 1px solid; margin-bottom: 15px"
+         class=" margin-left-15 test">
       <div class="row" style="margin-bottom: 2px">
         <div class="col-3">
           <img style="width: 30px; height: 30px; border-radius: 50%; margin-top: 2px; border: #1c75bc 1px solid"
-               src="{{short.user?.avatar}}" alt="Lỗi ảnh">
+               src="{{short.user?.avatar}}">
         </div>
-        <div class="col-3"></div>
+        <div class="col-3">
+        </div>
       </div>
-      <img class="border-radius-5px" style="width: 100%; height: border-box;" src="{{short.image}}" alt="Lỗi ảnh">
-      <p>{{short.content}}</p>
+      <img style="width: 100%;height: border-box; border-radius: 5px" src="{{short.image}}">
+      <P>{{short?.content}}</P>
     </div>
-    <div
-      style="background: wheat; margin-right: 15px; border-radius: 10px; width: 200px; height: 250px; border: 1px solid"
-      class="fixCol margin-left-15">
-      <div style="height: 80px" class="row"></div>
-      <div style="height: 50px" class="row"></div>
-    </div>
-  </div>
-  <div class="row">
   </div>
 </div>
 

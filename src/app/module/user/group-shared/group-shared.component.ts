@@ -10,15 +10,29 @@ import {TheGroup} from "../../../models/the-group";
 export class GroupSharedComponent implements OnInit {
 
   idUserLogIn = localStorage.getItem("USERID")
-  theGroup?: TheGroup[]
+  myGroup?: TheGroup[]
+  allGroup?: TheGroup[]
 
   constructor(private groupService: GroupService,
   ) {
   }
 
   ngOnInit(): void {
-    this.groupService.allGroup().subscribe(rs => {
-      this.theGroup = rs
+    this.allGroupPublic()
+    this.findGroupByIdUserCreate()
+  }
+
+  allGroupPublic() {
+    this.groupService.findAllGroup(this.idUserLogIn).subscribe(rs => {
+      console.log("allGroup")
+      this.allGroup = rs
+    })
+  }
+
+  findGroupByIdUserCreate() {
+    this.groupService.findGroupByIdUserCreate(this.idUserLogIn).subscribe(rs => {
+      console.log("findGroupByIdUserCreate")
+      this.myGroup = rs
     })
   }
 }

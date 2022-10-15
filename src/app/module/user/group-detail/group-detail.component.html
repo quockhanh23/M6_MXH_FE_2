@@ -6,20 +6,29 @@
 
 <div class="divFix">
   <div class="row">
-    <div class="col-4">
-      <img style="width: 100%; height: 200px" src="{{theGroup?.coverGroup}}">
-      <h2>{{theGroup?.groupName}}</h2>
-      <span *ngIf="theGroup?.status == 'Public'">Nhóm công khai</span>&nbsp;
-      <span>{{theGroup?.numberUser}} thành viên</span><br>
-      <button style="width: 100%" mat-raised-button color="primary">Tham gia nhóm</button>
+    <div class="col-4" style="background-color: #fcf8f8;">
+      <div style="border: #e7e7e7 1px solid; border-radius: 5px">
+        <img style="width: 100%; height: 200px;" src="{{theGroup?.coverGroup}}">
+        <h2 style="margin-left: 5px">{{theGroup?.groupName}}</h2>
+        <span style="margin-left: 5px" *ngIf="theGroup?.status == 'Public'">Nhóm công khai</span>&nbsp;
+        <span>{{countMember}} thành viên</span><br>
+        <button
+          style="width: 100%" mat-raised-button color="primary">
+          Quản lý
+        </button>
+        <button (click)="joinGroupParticipant()"
+                *ngIf="checkUserOnGroup" style="width: 100%" mat-raised-button color="primary">
+          Tham gia nhóm
+        </button>
+      </div>
     </div>
-    <div class="col-8" style="background-color: #e7e7e7">
+    <div class="col-8" style="background-color: #e7e7e7;  border: #e7e7e7 1px solid">
       <div class="row" style="border: #e7e7e7 1px solid">
         <div class="col-9" style="background-color: white">
           <h2>Thảo luận</h2>
         </div>
         <div class="col" align="right" style="background-color: white">
-          <button mat-raised-button color="primary">Tạo bài viết</button>
+          <button *ngIf="!checkUserOnGroup" mat-raised-button color="primary">Tạo bài viết</button>
         </div>
       </div>
       <div class="row">
@@ -29,9 +38,23 @@
           <h2>Giới thiệu</h2>
           <h2>{{theGroup?.type}}</h2>
           <h2 *ngIf="theGroup?.status == 'Public'">Nhóm công khai</h2>
-
         </div>
       </div>
     </div>
+  </div>
+  <div class="row" *ngFor="let mem of groupParticipant"
+       style="border-radius: 5px; margin-top: 5px; border: #b2dba1 1px solid">
+    <img class="imageListAvatarMessage"
+         src="{{mem?.user?.avatar}}">
+    <h2 class="a1 a2"
+        style="margin-top: 15px">{{mem?.user?.fullName}}
+    </h2>
+    <button (click)="acceptUserJoinGroup(mem?.user?.id)" mat-raised-button color="primary">Đồng ý</button>
+    <button (click)="rejectUserJoinGroup(mem?.user?.id)" mat-raised-button color="warn">Từ chối</button>
+  </div>
+  <div class="row" *ngFor="let mem of groupParticipant2"
+       style="border-radius: 5px; margin-top: 5px; border: #b2dba1 1px solid">
+    <img class="imageListAvatarMessage"
+         src="{{mem?.user?.avatar}}">
   </div>
 </div>

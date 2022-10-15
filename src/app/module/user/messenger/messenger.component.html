@@ -72,7 +72,7 @@
             <img *ngIf="idUserLogIn == conversation?.idReceiver?.id && conversation != null"
                  class="imgFix" style="margin-left: 10px"
                  src="{{conversation?.idSender?.avatar}}">
-            <span style="color: red;" class="material-icons">announcement</span>
+            <span *ngIf="count > 0" style="color: red;" class="material-icons">announcement</span>
             <span *ngIf="conversation != null" (click)="closeMessage()"
                   style="float: right; margin-top: 1px"
                   matTooltip="Đóng" class="color-whitesmoke a1 a2 material-icons">close</span>
