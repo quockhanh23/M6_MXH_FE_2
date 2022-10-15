@@ -11,7 +11,14 @@
 }
 
 #scroll2 {
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 638px;
+}
+
+#scroll5 {
+  overflow-y: scroll;
+  overflow-x: hidden;
   height: 638px;
 }
 

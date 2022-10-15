@@ -51,4 +51,12 @@ export class MessengerService {
   getAllMessageHaveLink(idConversation: string): Observable<any> {
     return this.httpClient.get<any>(API_URL + `/getAllMessageHaveLink?idConversation=${idConversation}`);
   }
+
+  listConversationNotFriend(idUser: string): Observable<Conversation[]> {
+    return this.httpClient.get<Conversation[]>(API_URL + `/listConversationNotFriend?idUser=${idUser}`);
+  }
+
+  messageNotFriend(idConversation: string): Observable<Messenger[]> {
+    return this.httpClient.get<Messenger[]>(API_URL + `/messageNotFriend?idConversation=${idConversation}`);
+  }
 }

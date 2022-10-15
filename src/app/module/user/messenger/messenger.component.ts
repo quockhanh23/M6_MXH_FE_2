@@ -22,6 +22,7 @@ export class MessengerComponent implements OnInit {
   url = localStorage.getItem("Url")
   listFriend?: User[];
   conversations?: Conversation[];
+  conversationsNotFriend?: Conversation[];
   conversation?: Conversation;
   messengers?: Messenger[]
   messengersHavePhoto?: Messenger[]
@@ -46,7 +47,12 @@ export class MessengerComponent implements OnInit {
   withMessage = 12
   withInfo = 0
   fb: any;
+  checkFriendMessage = true
   downloadURL!: Observable<string>;
+  colorCheckFriendMessage1 = 'color: #5bc0de'
+  colorCheckFriendMessage2 = 'color: #5bc0de'
+  firstDayMessage?: any
+  checkFirstDayMessage = false
 
   messengerForm: FormGroup = new FormGroup({
     content: new FormControl("",),
@@ -57,7 +63,7 @@ export class MessengerComponent implements OnInit {
               private friendRelationService: FriendRelationService,
               private messengerService: MessengerService,
               private storage: AngularFireStorage,
-              private router: Router) {
+  ) {
   }
 
   addNewItem(value: string) {
@@ -79,6 +85,7 @@ export class MessengerComponent implements OnInit {
       this.conversations = rs
     })
     this.scrollToBottom();
+    this.listConversationNotFriend()
   }
 
   ngAfterViewInit() {
@@ -103,6 +110,13 @@ export class MessengerComponent implements OnInit {
       // @ts-ignore
       this.messengerService.findAllByConversationOrderById(this.idConversation).subscribe(rs => {
         this.messengers = rs
+        if (rs.length > 0) {
+          console.log("vào tận đây")
+          this.firstDayMessage = rs[0].createAt
+          this.checkFirstDayMessage = true
+        } else {
+          this.checkFirstDayMessage = false
+        }
         this.getAllMessageHavePhoto()
         this.getAllMessageHaveLink()
         try {
@@ -186,6 +200,18 @@ export class MessengerComponent implements OnInit {
       });
   }
 
+  friendMessageTrue() {
+    this.checkFriendMessage = true
+    this.colorCheckFriendMessage2 = 'color: #8c8c8c'
+    this.colorCheckFriendMessage1 = 'color: #ffc107'
+  }
+
+  friendMessageFalse() {
+    this.checkFriendMessage = false
+    this.colorCheckFriendMessage1 = 'color: #8c8c8c'
+    this.colorCheckFriendMessage2 = 'color: #ffc107'
+  }
+
   closeMessage() {
     this.checkConversation = false
   }
@@ -246,6 +272,13 @@ export class MessengerComponent implements OnInit {
         this.countMessengersHaveLink = false
       }
       console.log(this.countMessengersHaveLink)
+    })
+  }
+
+  listConversationNotFriend() {
+    // @ts-ignore
+    this.messengerService.listConversationNotFriend(this.idUserLogIn).subscribe(rs => {
+      this.conversationsNotFriend = rs
     })
   }
 }
