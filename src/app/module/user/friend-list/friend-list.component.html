@@ -14,7 +14,7 @@
         style="color: #0fd90f">{{nameUser}} ({{count}})</span></h3>
     </div>
     <div class="col-4">
-      <form>
+      <form *ngIf="count > 0">
         <input placeholder="Tìm kiếm bạn bè"
                style="outline: none;border-radius: 8px; border: 1px solid; width: 400px; height: 30px; font-size: 25px;
             background-repeat: no-repeat !important;" type="search" id="search">
@@ -55,7 +55,18 @@
       </div>
     </div>
   </div>
-  <div class="height450px" *ngIf="count == null || count == 0">
-    <h2 style="margin-left: 40%; font-size: 35px; margin-top: 1%">Không có bạn bè</h2>
+</div>
+<div *ngIf="checkLength">
+  <div style="{{heightIfBlank1}}">
+  </div>
+  <div>
+    <p *ngIf="idUser == idUserLogIn" style="font-size: 25px" align="center">Bạn không có bạn bè</p>
+    <p *ngIf="idUser != idUserLogIn" style="font-size: 25px" align="center">Không có bạn bè</p>
+    <p *ngIf="idUser == idUserLogIn" class="a1 a2" [routerLink]="['/user/requests']"
+       style="font-size: 17px; color: #0a70b9" align="center">
+      <ins>Tìm kiếm bạn bè</ins>
+    </p>
+  </div>
+  <div style="{{heightIfBlank2}}">
   </div>
 </div>

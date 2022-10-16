@@ -9,9 +9,7 @@
         </span></sub>&nbsp;Tin của bạn
 </h2>
 <div class="divFix" style="background-color: #faf7f7; border-radius: 5px">
-
-  <div class="row" style="border-radius: 10px;" #scrollMe [scrollTop]="scrollMe.scrollHeight"
-       id="scroll">
+  <div class="row" style="border-radius: 10px;">
     <div *ngFor="let short of shortNew"
          style="background:wheat; margin-right: 15px; height: 220px; width: 160px;
            border-radius: 10px; border: 1px solid; margin-bottom: 15px"
@@ -29,4 +27,18 @@
     </div>
   </div>
 </div>
+<div *ngIf="checkShortNew">
+  <div style="{{heightIfBlank1}}">
+  </div>
+  <div>
+    <p style="font-size: 25px" align="center">Bạn chưa đăng tin nào</p>
+    <p class="a1 a2" [routerLink]="['/user/listShortNew']"
+       style="font-size: 17px; color: #0a70b9" align="center">
+      <ins>Tạo tin ngay</ins>
+    </p>
+  </div>
+  <div style="{{heightIfBlank2}}">
+  </div>
+</div>
+<div *ngIf="checkShortNew2" style="{{heightIfBlank1}}"></div>
 

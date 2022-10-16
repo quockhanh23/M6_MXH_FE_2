@@ -87,12 +87,12 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
     this.shortNewService.newDay().subscribe()
     this.allPeople()
     this.allComment()
+    this.allPostPublic()
   }
 
   ngOnInit(): void {
     localStorage.removeItem('UrlMessage')
     localStorage.setItem('Url', window.location.href);
-    this.allPostPublic()
     this.getListFriends(this.idUserLogIn)
     this.allAnswerComment()
     this.allFriend(this.idUserLogIn)
@@ -105,6 +105,43 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
       this.post = result
       // console.log("Kiểu dữ liệu: " + JSON.stringify(result))
       this.reloadComment()
+    }, error => {
+      console.log("Lỗi: " + error)
+    })
+  }
+
+  reloadAllPostPublic() {
+    console.log("vào hàm reloadAllPostPublic")
+    this.postService.reloadAllPostPublic().subscribe(result => {
+      this.post = result
+      this.reloadComment()
+    }, error => {
+      console.log("Lỗi: " + error)
+    })
+  }
+
+  reloadLikeAllPostPublic() {
+    console.log("vào hàm reloadLikeAllPostPublic")
+    this.postService.reloadLikeAllPostPublic().subscribe(result => {
+      this.post = result
+    }, error => {
+      console.log("Lỗi: " + error)
+    })
+  }
+
+  reloadHeartsAllPostPublic() {
+    console.log("vào hàm reloadHeartsAllPostPublic")
+    this.postService.reloadHeartsAllPostPublic().subscribe(result => {
+      this.post = result
+    }, error => {
+      console.log("Lỗi: " + error)
+    })
+  }
+
+  reloadDisLikeAllPostPublic() {
+    console.log("vào hàm reloadDisLikeAllPostPublic")
+    this.postService.reloadDisLikeAllPostPublic().subscribe(result => {
+      this.post = result
     }, error => {
       console.log("Lỗi: " + error)
     })
@@ -125,7 +162,7 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
     // @ts-ignore
     this.likePostService.createLike(likePost, idPost, this.idUser).subscribe(result => {
       this.likePost = result
-      this.allPostPublic()
+      this.reloadLikeAllPostPublic()
     }, error => {
       console.log("Lỗi: " + error)
     })
@@ -147,7 +184,7 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
     this.likePostService.createDisLike(disLikePost, idPost, this.idUser).subscribe(result => {
       this.disLikePost = result
       console.log(result)
-      this.allPostPublic()
+      this.reloadDisLikeAllPostPublic()
     }, error => {
       console.log("Lỗi: " + error)
     })
@@ -169,7 +206,7 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
     this.likePostService.createHeart(heart, idPost, this.idUser).subscribe(result => {
       this.disLikePost = result
       console.log(result)
-      this.allPostPublic()
+      this.reloadHeartsAllPostPublic()
     }, error => {
       console.log("Lỗi: " + error)
     })
@@ -189,7 +226,7 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
     // @ts-ignore
     this.postService.createPost(post1, idUser).subscribe(result => {
       this.post1 = result
-      this.ngOnInit()
+      this.reloadAllPostPublic()
       this.fb = null
     }, error => {
       console.log("Lỗi: " + error)
@@ -293,7 +330,7 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
       console.log("Đã vào")
       // @ts-ignore
       this.commentOne = rs
-      this.allPostPublic()
+      this.reloadAllPostPublic()
       console.log("Đã vào" + rs)
     }, error => {
       console.log("Lỗi: " + error)

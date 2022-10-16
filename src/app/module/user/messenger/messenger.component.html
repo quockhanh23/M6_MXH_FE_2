@@ -6,7 +6,7 @@
 
 <div class="row"
      style="margin-left: 5%; margin-right: 5%; margin-bottom: 10px; background-color: #faf9f9; border-radius: 8px">
-  <div *ngIf="countFriend == 0" class="col-3">
+  <div *ngIf="countFriend == 0 && countMessageNotFriend == 0" class="col-3">
     <div class="row" style="margin-left: 1%">
       <div class="col-8">
         <h2>Bạn không có bạn bè</h2>
@@ -18,15 +18,20 @@
       </div>
     </div>
   </div>
-  <div *ngIf="countFriend > 0" class="col-3">
+  <div *ngIf="countFriend > 0 || countMessageNotFriend > 0" class="col-3">
     <div class="row" style="margin-left: 1%">
       <div class="col">
         <h2 matTooltip="Tin nhắn từ bạn bè" class="a1 a2" (click)="friendMessageTrue()"
             style="{{colorCheckFriendMessage1}}">Bạn bè của bạn</h2>
+        <a *ngIf="countFriend == 0 && checkFriendMessage" style="font-size: 18px" [routerLink]="['/user/requests']">Tìm
+          kiếm bạn bè</a>
       </div>
       <div class="col">
         <h2 matTooltip="Tin nhắn từ người lạ" class="a1 a2" (click)="friendMessageFalse()"
             style="{{colorCheckFriendMessage2}}">Người lạ</h2>
+        <a *ngIf="countMessageNotFriend == 0 && !checkFriendMessage" style="font-size: 18px"
+           [routerLink]="['/user/requests']">
+          Không tin nhắn</a>
       </div>
     </div>
     <div *ngIf="checkFriendMessage" class="col" id="scroll2">

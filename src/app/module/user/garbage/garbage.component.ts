@@ -24,6 +24,13 @@ export class GarbageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.testRouter()
   }
 
+  testRouter() {
+    console.log(localStorage.key(2));
+    var pathString = location.pathname
+    console.log('appComponent: pathString...');
+    console.log(pathString);
+  }
 }

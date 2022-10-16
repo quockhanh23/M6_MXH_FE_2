@@ -4,7 +4,22 @@
              class="backButton title material-icons a1 a2 backArrowSpan">keyboard_backspace</span>
 </div>
 <div class="divFix">
+  <h2 align="center"><sub><span class="material-icons">sticky_note_2</span></sub>&nbsp;Bài đăng của bạn</h2>
   <div *ngFor="let p of post">
     <h2>{{p?.content}}</h2>
   </div>
+  <div *ngIf="checkLength">
+    <div style="{{heightIfBlank1}}">
+    </div>
+    <div>
+      <p style="font-size: 25px" align="center">Bạn chưa có bài viết nào</p>
+      <p class="a1 a2" [routerLink]="['/user/newsfeed']"
+         style="font-size: 17px; color: #0a70b9" align="center">
+        <ins>Đăng bài ngay</ins>
+      </p>
+    </div>
+    <div style="{{heightIfBlank2}}">
+    </div>
+  </div>
 </div>
+

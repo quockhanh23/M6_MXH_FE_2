@@ -18,6 +18,9 @@ export class MyPostComponent implements OnInit {
   like?: LikePost[]
   idPost?: string
   idUser?: any
+  heightIfBlank1: any
+  heightIfBlank2: any
+  checkLength = false
 
   constructor(private postService: PostService,
               private userService: UserService,
@@ -35,6 +38,11 @@ export class MyPostComponent implements OnInit {
     this.postService.getAllPostByUser(<string>this.idUserLogIn).subscribe(result => {
       console.log("ALO" + result)
       this.post = result
+      if (result.length == 0 || result.length == undefined) {
+        this.checkLength = true
+        this.heightIfBlank1 = 'height: 150px'
+        this.heightIfBlank2 = 'height: 180px'
+      }
     }, error => {
       console.log("Lỗi: " + error)
     })

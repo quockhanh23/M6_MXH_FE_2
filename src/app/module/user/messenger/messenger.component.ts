@@ -33,6 +33,7 @@ export class MessengerComponent implements OnInit {
   withUser = 'Đang trò truyện với : '
   border = 'border: #b2dba1 1px solid'
   countFriend = 0
+  countMessageNotFriend = 0
   content: any;
   myScrollContainer: any;
   count = 0
@@ -200,12 +201,14 @@ export class MessengerComponent implements OnInit {
   }
 
   friendMessageTrue() {
+    console.log("vào1")
     this.checkFriendMessage = true
     this.colorCheckFriendMessage2 = 'color: #8c8c8c'
     this.colorCheckFriendMessage1 = 'color: #ffc107'
   }
 
   friendMessageFalse() {
+    console.log("vào2")
     this.checkFriendMessage = false
     this.colorCheckFriendMessage1 = 'color: #8c8c8c'
     this.colorCheckFriendMessage2 = 'color: #ffc107'
@@ -278,6 +281,7 @@ export class MessengerComponent implements OnInit {
     // @ts-ignore
     this.messengerService.listConversationNotFriend(this.idUserLogIn).subscribe(rs => {
       this.conversationsNotFriend = rs
+      this.countMessageNotFriend = rs.length
     })
   }
 }

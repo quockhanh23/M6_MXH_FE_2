@@ -12,6 +12,10 @@ export class MyShortNewComponent implements OnInit {
 
   idUserLogIn = localStorage.getItem("USERID")
   shortNew?: ShortNews[]
+  heightIfBlank1: any
+  heightIfBlank2: any
+  checkShortNew = false
+  checkShortNew2 = false
 
   constructor(private userService: UserService,
               private shortNewService: ShortNewService
@@ -25,6 +29,18 @@ export class MyShortNewComponent implements OnInit {
   myShortNews() {
     this.shortNewService.myShortNews(this.idUserLogIn).subscribe(rs => {
       this.shortNew = rs
+      console.log(typeof rs.length)
+      console.log(rs.length)
+      if (rs.length == 0 || rs.length == undefined) {
+        this.checkShortNew = true
+        this.heightIfBlank1 = 'height: 150px'
+        this.heightIfBlank2 = 'height: 180px'
+      }
+      if (rs.length < 8) {
+        this.checkShortNew2 = true
+        this.heightIfBlank1 = 'height: 150px'
+      }
+      console.log(this.checkShortNew2)
     })
   }
 

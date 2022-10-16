@@ -24,6 +24,9 @@ export class FriendListComponent implements OnInit {
   height: any
   routerLink = 'user/people-detail'
   routerLink2 = 'user/user-detail'
+  heightIfBlank1: any
+  heightIfBlank2: any
+  checkLength = false
 
   constructor(private userService: UserService,
               private friendRelationService: FriendRelationService,
@@ -39,17 +42,13 @@ export class FriendListComponent implements OnInit {
       this.nameUser = rs.fullName
     })
     this.friendRelationService.listFriend(this.idUser).subscribe(rs => {
-      console.log("rs: " + this.idUser)
-      try {
-        this.count = rs.length
-      } catch (err) {
-        console.log("")
+      if (rs.length == 0 || rs.length == undefined) {
+        this.checkLength = true
+        this.heightIfBlank1 = 'height: 120px'
+        this.heightIfBlank2 = 'height: 250px'
       }
-      console.log("count: " + rs.length)
-      if (rs == null) {
-        this.count = 0
-        this.height = 'height: 500px'
-      }
+      console.log("idUser: " + this.idUser)
+      this.count = rs.length
       if (rs.length > 0 && rs.length < 4) {
         this.px = rs.length * 60 + 400
         this.height = 'height: ' + this.px + 'px'
@@ -58,24 +57,17 @@ export class FriendListComponent implements OnInit {
       if (rs.length >= 4 && rs.length < 8) {
         this.px = rs.length * 60 + 100
         this.height = 'height: ' + this.px + 'px'
-        console.log("px: " + this.px)
       }
       if (rs.length >= 8) {
         this.px = rs.length * 60
         this.height = 'height: ' + this.px + 'px'
-        console.log("px: " + this.px)
       }
       this.listFriend = rs
       for (let i = 0; i < this.listFriend.length; i++) {
         this.friendRelationService.listMutualFriend(this.listFriend[i].id, this.idUserLogIn).subscribe(rs => {
-          try {
-            this.count2 = rs.length
-          } catch (err) {
-            console.log("")
-          }
+          this.count2 = rs.length
         })
       }
-      console.log("count2: " + rs.length)
     }, error => {
       console.log(error)
     })
