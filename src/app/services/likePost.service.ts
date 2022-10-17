@@ -18,7 +18,7 @@ export class LikePostService {
   }
 
   getAllLike(idPost: string): Observable<Post2[]> {
-    return this.httpClient.get<Post2[]>(API_URL + `/getAllLike?id=${idPost}`);
+    return this.httpClient.get<Post2[]>(API_URL + `/getAllLike?idPost=${idPost}`);
   }
 
   createLike(likePost: LikePost, idPost: string, idUser: string): Observable<LikePost> {

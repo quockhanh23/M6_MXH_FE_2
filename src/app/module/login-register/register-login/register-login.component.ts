@@ -11,6 +11,7 @@ import {DialogLoginSuccessComponent} from "../../../notifications/dialog-login-s
 import {
   DialogRegisterSuccessComponent
 } from "../../../notifications/dialog-register-success/dialog-register-success.component";
+import {ShortNewService} from "../../../services/short-new.service";
 
 declare var $: any;
 
@@ -51,7 +52,8 @@ export class RegisterLoginComponent implements OnInit {
               private router: Router,
               public dialog: MatDialog,
               private authenticationService: AuthenticationService,
-              private userService: UserService,) {
+              private userService: UserService,
+  ) {
     this.min = moment(moment().subtract(29200, 'days').calendar()).format("YYYY-MM-DD")
     this.max = moment(moment().subtract(5840, 'days').calendar()).format("YYYY-MM-DD")
     localStorage.clear();

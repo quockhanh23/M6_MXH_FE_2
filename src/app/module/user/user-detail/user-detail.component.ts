@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../../services/user.service";
 import {ShortNewService} from "../../../services/short-new.service";
+import {LifeEventsService} from "../../../services/life-events.service";
+import {LifeEvents} from "../../../models/life-events";
 
 @Component({
   selector: 'app-user-detail',
@@ -14,10 +16,14 @@ export class UserDetailComponent implements OnInit {
   avatar: string = "";
   cover: string = "";
   url: string = "null";
+  idUserLogIn = localStorage.getItem("USERID")
+  lifeEvents?: LifeEvents[]
 
   constructor(private router: Router,
               private userService: UserService,
-              private shortNewService: ShortNewService
+              private shortNewService: ShortNewService,
+              private lifeEventsService: LifeEventsService,
+              private activatedRoute: ActivatedRoute,
   ) {
     if (localStorage.getItem('currentUser') == null) {
       this.router.navigate(['']).then()
@@ -38,6 +44,20 @@ export class UserDetailComponent implements OnInit {
 
   ngOnInit(): void {
     localStorage.setItem('UrlUserDetail', window.location.href);
-    this.shortNewService.newDay().subscribe()
+    this.findListByIdUser()
+    this.activatedRoute.paramMap.subscribe(paramMap => {
+      const id: any = paramMap.get('id');
+      console.log("id life: " + id)
+    })
+  }
+
+  findListByIdUser() {
+    console.log("vào hàm findListByIdUser")
+    // @ts-ignore
+    this.lifeEventsService.findListByIdUser(this.idUserLogIn).subscribe(result => {
+      this.lifeEvents = result
+    }, error => {
+      console.log("Lỗi: " + error)
+    })
   }
 }

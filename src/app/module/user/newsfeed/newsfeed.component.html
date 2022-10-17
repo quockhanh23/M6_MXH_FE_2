@@ -96,7 +96,7 @@
       <!--List post-->
       <div
         class="post-content font-size-18" style="border: 1px violet !important; margin-bottom: 20px"
-        *ngFor=" let p of post">
+        *ngFor=" let p of posts">
         <div class="post-container">
           <img *ngIf="p?.userDTO?.id == idUserLogIn" src="{{p?.userDTO?.avatar}}"
                matTooltip="Xem trang cá nhân" routerLink="/user/user-detail" class="a1 profile-photo-md pull-left"/>

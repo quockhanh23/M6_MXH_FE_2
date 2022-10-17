@@ -32,6 +32,8 @@ import { GroupDetailComponent } from './group-detail/group-detail.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { ListImageDefaultComponent } from './list-image-default/list-image-default.component';
 import { SavedListComponent } from './saved-list/saved-list.component';
+import { LifeEventsDetailComponent } from './life-events-detail/life-events-detail.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
 
 
 @NgModule({
@@ -61,20 +63,22 @@ import { SavedListComponent } from './saved-list/saved-list.component';
     GroupDetailComponent,
     ListImageDefaultComponent,
     SavedListComponent,
+    LifeEventsDetailComponent,
   ],
   exports: [
     EditProfileComponent
   ],
-    imports: [
-        CommonModule,
-        UserRoutingModule,
-        FormsModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        MaterialModule,
-        MatMenuModule,
-        MatProgressSpinnerModule
-    ]
+  imports: [
+    CommonModule,
+    UserRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    MaterialModule,
+    MatMenuModule,
+    MatProgressSpinnerModule,
+    MatDatepickerModule
+  ]
 })
 export class UserModule {
 }

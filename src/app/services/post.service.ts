@@ -35,15 +35,15 @@ export class PostService {
     return this.httpClient.get<Post2[]>(API_URL + '/reloadAllPostPublic')
   }
 
-  reloadLikeAllPostPublic(): Observable<Post2[]> {
-    return this.httpClient.get<Post2[]>(API_URL + '/reloadLikeAllPostPublic')
+  updateLikePost(idPost: any): Observable<any> {
+    return this.httpClient.delete<any>(API_URL + `/updateLikePost?idPost=${idPost}`)
   }
 
-  reloadHeartsAllPostPublic(): Observable<Post2[]> {
-    return this.httpClient.get<Post2[]>(API_URL + '/reloadHeartsAllPostPublic')
+  updateDisLikePost(idPost: any): Observable<any> {
+    return this.httpClient.delete<any>(API_URL + `/updateDisLikePost?idPost=${idPost}`)
   }
 
-  reloadDisLikeAllPostPublic(): Observable<Post2[]> {
-    return this.httpClient.get<Post2[]>(API_URL + '/reloadDisLikeAllPostPublic')
+  updateHeartPost(idPost: any): Observable<any> {
+    return this.httpClient.delete<any>(API_URL + `/updateHeartPost?idPost=${idPost}`)
   }
 }

@@ -6,6 +6,7 @@ import {MatBadgeModule} from "@angular/material/badge";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatTooltipModule} from "@angular/material/tooltip";
+import {MatNativeDateModule} from "@angular/material/core";
 
 const MaterialComponents = [
   MatButtonModule,
@@ -15,6 +16,7 @@ const MaterialComponents = [
   MatInputModule,
   MatDialogModule,
   MatTooltipModule,
+  MatNativeDateModule,
 ]
 
 @NgModule({

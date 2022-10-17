@@ -1,0 +1,22 @@
+<div class="backArrowDiv">
+       <span matTooltip="Quay lại"
+             [routerLink]="['/user/newsfeed']"
+             class="backButton title material-icons a1 a2 backArrowSpan">keyboard_backspace</span>
+</div>
+
+<form [formGroup]="lifeEventsCreateForm" (ngSubmit)="createLifeEvent()">
+
+  <input formControlName="work"
+         class="form-control" type="text"
+         name="work" placeholder="Sự kiện trong đời"/>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Lựa chọn thời gian</mat-label>
+    <input formControlName="timeline" matInput [matDatepicker]="picker">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <button class="btn btn-primary">Lưu lại thay đổi</button>
+</form>
+

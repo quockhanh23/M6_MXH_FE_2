@@ -48,8 +48,16 @@
                 <a routerLink="/user/password">Đổi mật khẩu</a></li>
               <li class="active"><i class="icon ion-ios-information-outline"></i>
                 <a routerLink="/user/edit">Chỉnh sửa trang cá nhân</a></li>
-              <li class="active"><i class="icon ion-ios-information-outline"></i>
-                <a>Các sự kiện</a></li>
+              <div class="divLi1">
+                <li class="li1 active"><i class="icon ion-ios-information-outline"></i>
+                  <a>Các sự kiện</a>
+                </li>
+                <span style="margin-left: 32px" matTooltip="Thêm sự kiện" class="a1 a2 material-icons">timeline</span>
+                <div style="margin-left: 32px" *ngFor="let life of lifeEvents">
+                  <p style="font-size: 19px; margin-top: 5px" routerLink="/user/life/{{life?.id}}">{{life?.work}}</p>
+                </div>
+              </div>
+              <hr>
               <li class="active"><i class="icon ion-ios-information-outline"></i>
                 <a>Giới thiệu</a></li>
               <li class="active"><i class="icon ion-ios-information-outline"></i>

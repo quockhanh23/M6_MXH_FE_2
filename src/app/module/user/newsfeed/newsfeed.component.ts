@@ -32,13 +32,11 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
   idUserLogIn = localStorage.getItem("USERID")
   userDetail!: User;
   users!: User[];
-  post?: Post2[]
-  post1?: Post2
+  posts?: Post2[]
+  post?: Post2
   like?: LikePost[]
-  likePost?: LikePost
   comment?: Comment[]
   commentOne?: Comment
-  disLikePost?: DisLikePost
   heart?: IconHeart
   friendRelations?: FriendRelation[];
   friendRelations3?: FriendRelation[];
@@ -87,7 +85,7 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
     this.shortNewService.newDay().subscribe()
     this.allPeople()
     this.allComment()
-    this.allPostPublic()
+    this.reloadAllPostPublic()
   }
 
   ngOnInit(): void {
@@ -102,7 +100,7 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
   allPostPublic() {
     console.log("vào hàm allPostPublic")
     this.postService.allPost().subscribe(result => {
-      this.post = result
+      this.posts = result
       // console.log("Kiểu dữ liệu: " + JSON.stringify(result))
       this.reloadComment()
     }, error => {
@@ -113,37 +111,31 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
   reloadAllPostPublic() {
     console.log("vào hàm reloadAllPostPublic")
     this.postService.reloadAllPostPublic().subscribe(result => {
-      this.post = result
+      this.posts = result
       this.reloadComment()
     }, error => {
       console.log("Lỗi: " + error)
     })
   }
 
-  reloadLikeAllPostPublic() {
-    console.log("vào hàm reloadLikeAllPostPublic")
-    this.postService.reloadLikeAllPostPublic().subscribe(result => {
-      this.post = result
-    }, error => {
-      console.log("Lỗi: " + error)
+  updateLikePost(idPost: any) {
+    console.log("vào hàm updateReflectPost")
+    this.postService.updateLikePost(idPost).subscribe(result => {
+      this.reloadAllPostPublic()
     })
   }
 
-  reloadHeartsAllPostPublic() {
-    console.log("vào hàm reloadHeartsAllPostPublic")
-    this.postService.reloadHeartsAllPostPublic().subscribe(result => {
-      this.post = result
-    }, error => {
-      console.log("Lỗi: " + error)
+  updateDisLikePost(idPost: any) {
+    console.log("vào hàm updateDisLikePost")
+    this.postService.updateDisLikePost(idPost).subscribe(result => {
+      this.reloadAllPostPublic()
     })
   }
 
-  reloadDisLikeAllPostPublic() {
-    console.log("vào hàm reloadDisLikeAllPostPublic")
-    this.postService.reloadDisLikeAllPostPublic().subscribe(result => {
-      this.post = result
-    }, error => {
-      console.log("Lỗi: " + error)
+  updateHeartPost(idPost: any) {
+    console.log("vào hàm updateHeartPost")
+    this.postService.updateHeartPost(idPost).subscribe(result => {
+      this.reloadAllPostPublic()
     })
   }
 
@@ -161,8 +153,7 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
     console.log(likePost)
     // @ts-ignore
     this.likePostService.createLike(likePost, idPost, this.idUser).subscribe(result => {
-      this.likePost = result
-      this.reloadLikeAllPostPublic()
+      this.updateLikePost(idPost)
     }, error => {
       console.log("Lỗi: " + error)
     })
@@ -182,9 +173,7 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
     console.log(disLikePost)
     // @ts-ignore
     this.likePostService.createDisLike(disLikePost, idPost, this.idUser).subscribe(result => {
-      this.disLikePost = result
-      console.log(result)
-      this.reloadDisLikeAllPostPublic()
+      this.updateDisLikePost(idPost)
     }, error => {
       console.log("Lỗi: " + error)
     })
@@ -204,9 +193,7 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
     console.log(heart)
     // @ts-ignore
     this.likePostService.createHeart(heart, idPost, this.idUser).subscribe(result => {
-      this.disLikePost = result
-      console.log(result)
-      this.reloadHeartsAllPostPublic()
+      this.updateHeartPost(idPost)
     }, error => {
       console.log("Lỗi: " + error)
     })
@@ -215,17 +202,17 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
   // Tạo post
   createPost(idUser: any) {
     console.log("vào hàm createPost")
-    const post1 = {
+    const newPost = {
       content: this.newPostForm.value.content,
       image: this.fb,
       user: {
         id: this.idUser
       },
     }
-    console.log(post1)
+    console.log(newPost)
     // @ts-ignore
-    this.postService.createPost(post1, idUser).subscribe(result => {
-      this.post1 = result
+    this.postService.createPost(newPost, idUser).subscribe(result => {
+      this.post = result
       this.reloadAllPostPublic()
       this.fb = null
     }, error => {
@@ -322,7 +309,7 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
         id: this.idUser
       },
       post: {
-        id: this.post?.length
+        id: idPost
       }
     }
     // @ts-ignore
@@ -350,8 +337,6 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
     console.log(commentLike)
     // @ts-ignore
     this.likeCommentService.createLikeComment(commentLike, idComment, this.idUser).subscribe(rs => {
-      this.disLikePost = rs
-      console.log(rs)
       this.reloadLikeAllComment()
     }, error => {
       console.log("Lỗi: " + error)
@@ -372,8 +357,6 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
     console.log(dislikeComment)
     // @ts-ignore
     this.likeCommentService.createDisLikeComment(dislikeComment, idComment, this.idUser).subscribe(rs => {
-      this.disLikePost = rs
-      console.log(rs)
       this.reloadDisLikeAllComment()
     }, error => {
       console.log("Lỗi: " + error)
@@ -392,7 +375,6 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
     console.log("Vào hàm allAnswerComment")
     this.answerCommentService.getAll().subscribe(rs => {
       this.answerComments = rs
-      console.log("Oke")
     })
   }
 
@@ -433,7 +415,7 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
   deleteComment(idComment: any, idPost: any) {
     console.log("idComment là: " + idComment);
     this.commentService.deleteComment(this.idUserLogIn, idComment, idPost).subscribe(rs => {
-      this.ngOnInit()
+      this.reloadAllPostPublic()
     }, error => {
       console.log(error)
     })
