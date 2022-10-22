@@ -97,6 +97,20 @@
   height: 250px;
 }
 
+.imgShortNewAvatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-top: 2px;
+  border: #1c75bc 1px solid
+}
+
+.imgShortNewContent {
+  width: 100%;
+  height: border-box;
+  border-radius: 5px
+}
+
 .messageContentLeft {
   padding: 5px 10px;
   border-radius: 12px;
@@ -1232,7 +1246,7 @@ ul.online-users li span.online-dot {
 }
 
 .follow-user div {
-  margin-left: 50px;
+  margin-left: 40px;
   position: relative;
 }
 

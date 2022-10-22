@@ -57,13 +57,13 @@
          class=" margin-left-15 test">
       <div class="row" style="margin-bottom: 2px">
         <div class="col-3">
-          <img style="width: 30px; height: 30px; border-radius: 50%; margin-top: 2px; border: #1c75bc 1px solid"
+          <img class="imgShortNewAvatar"
                src="{{short.userDTO?.avatar}}" alt="Lỗi ảnh">
         </div>
         <div class="col-3">
         </div>
       </div>
-      <img style="width: 100%;height: border-box; border-radius: 5px" src="{{short.image}}" alt="Lỗi ảnh">
+      <img class="imgShortNewContent" src="{{short.image}}" alt="Lỗi ảnh">
       <P>{{short?.content}}</P>
     </div>
     <div *ngIf="count < 1"

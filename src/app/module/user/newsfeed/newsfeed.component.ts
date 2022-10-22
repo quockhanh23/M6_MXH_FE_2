@@ -39,7 +39,7 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
   commentOne?: Comment
   heart?: IconHeart
   friendRelations?: FriendRelation[];
-  friendRelations3?: FriendRelation[];
+  friendRelations2?: FriendRelation[];
   countFriend?: any
   answerComments?: AnswerComment[]
   checkDone = false
@@ -403,12 +403,8 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
   allFriend(idUser: any) {
     console.log("Vào hàm getListFriends" + idUser)
     this.friendRelationService.listFriend(idUser).subscribe(rs => {
-      this.friendRelations3 = rs
-      try {
-        this.countFriend = rs.length
-      } catch (err) {
-        console.log("Oke" + rs)
-      }
+      this.friendRelations2 = rs
+      this.countFriend = rs.length
     })
   }
 

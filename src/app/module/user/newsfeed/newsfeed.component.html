@@ -19,7 +19,7 @@
 
 <div id="page-contents" class="font-size-18">
   <div class="row">
-    <div class="col-md-3 static">
+    <div class="col-3 static">
       <div class="profile-card">
         <img matTooltip="Thông tin của bạn" routerLink="/user/user-detail" src="{{userDetail?.avatar}}" alt="user"
              class="a1 profile-photo"/>
@@ -47,17 +47,17 @@
         </li>
       </ul>
     </div>
-    <div class="col-md-6">
+    <div class="col-6">
       <app-short-new></app-short-new>
       <hr>
       <div class="border-radius-10 create-post" style="border: #e5e5e5 1px solid">
         <form [formGroup]="newPostForm"
               (ngSubmit)="createPost(userDetail?.id)">
           <div class="row">
-            <div class="col-md-7 col-sm-7">
+            <div class="col-6">
               <div class="form-group">
                 <img src="{{userDetail?.avatar}}" alt="" class="profile-photo-md a1"/>
-                <input style="width: 500px !important; height: 50px"
+                <input style="width: 400px !important; height: 50px"
                        onfocus="this.value=''" type="text"
                        class="font-size-18 form-control c1 i1" formControlName="content"
                        placeholder="Bạn đang nghĩ gì thế?">
@@ -69,14 +69,14 @@
                 <span>Đang tải ảnh</span>
               </div>
               <div *ngIf="fb != null">
-                <span class="font-size-15" style="margin-left: 60px">Ảnh đã tải lên</span>
+                <span class="font-size-15" style="margin-left: 80px">Ảnh đã tải lên</span>
                 <img style="margin-left: 10px" class="imageUploadSmall"
                      src="{{fb}}" alt="">
               </div>
             </div>
-            <div class="col-md-5 col-sm-5">
+            <div class="col-6">
               <div class="a1 tools">
-                <ul style="margin-left: 110px" class="publishing-tools list-inline">
+                <ul style="margin-left: 125px" class="publishing-tools list-inline">
                   <span style="font-size: 40px; color: deeppink" #userPhoto (change)="onFileSelected($event)"
                         matTooltip="Tải ảnh lên"
                         class="a1 material-icons btn-file">add_photo_alternate
@@ -244,7 +244,8 @@
                          class="profile-photo-sm"/>
                   </div>
                   <div class="col-8">
-                    <input style=" height: 40px; border-radius: 11px" onfocus="this.value=''" type="text"
+                    <input style="width: 100% !important; height: 40px; border-radius: 11px" onfocus="this.value=''"
+                           type="text"
                            class="form-control c1 i1 font-size-18" formControlName="content"
                            placeholder="Bình luận...">
                     <span class="font-size-15">Tối đa 500 kí tự.</span>
@@ -262,18 +263,18 @@
       </div>
       <!--List post-->
     </div>
-    <div style="margin-left: 50px" class="col-md-2 static">
+    <div class="col-2 static" style="margin-left: 3%">
       <div class="suggestions" id="sticky-sidebar">
-        <h3 align="center" style="color: #ef0b93; margin-left: 12%" class="grey">Những người bạn có thể biết</h3>
-        <div class="follow-user" *ngFor=" let user of users">
+        <h3 align="center" style="color: #ef0b93; margin-left: 11%" class="grey">Những người bạn có thể biết</h3>
+        <div style="margin-left: 3px" class="follow-user" *ngFor=" let user of users">
           <div *ngIf="user?.id != idUserLogIn">
-            <img routerLink="/user/people-detail/{{user?.id}}"
+            <img routerLink="/user/people-detail/{{user?.id}}" style="margin-right: 10px"
                  src="{{user.avatar}}"
                  alt="" class="profile-photo-sm pull-left a1"/>
             <div>
               <h3><a>{{user.fullName}}</a></h3>
-              <a routerLink="/user/people-detail/{{user?.id}}"
-                 class="font-size-15 text-green a1 a2">Xem trang cá nhân</a>
+              <p style="margin-left: 12px" routerLink="/user/people-detail/{{user?.id}}"
+                 class="font-size-15 text-green a1 a2">Xem trang cá nhân</p>
             </div>
           </div>
         </div>

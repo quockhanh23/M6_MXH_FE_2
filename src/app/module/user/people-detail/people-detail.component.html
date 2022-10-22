@@ -274,7 +274,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="">
+                  <div>
                     <form [formGroup]="commentCreateForm"
                           (ngSubmit)="createComment(p?.id)">
                       <div class="row">
@@ -283,13 +283,16 @@
                                class="profile-photo-sm"/>
                         </div>
                         <div class="col-8">
-                          <input style=" height: 40px; border-radius: 11px" onfocus="this.value=''" type="text"
-                                 class="form-control c1 i1 font-size-18" formControlName="content"
-                                 placeholder="Bình luận...">
-                          <span class="font-size-15">Tối đa 500 kí tự.</span>
+                          <div>
+                            <input style=" height: 40px; border-radius: 11px; width: 100% !important;"
+                                   onfocus="this.value=''" type="text"
+                                   class="form-control c1 i1 font-size-18" formControlName="content"
+                                   placeholder="Bình luận...">
+                            <span class="font-size-15">Tối đa 500 kí tự.</span>
+                          </div>
                         </div>
-                        <div class="col-3">
-                          <button style="text-align: center; width: 130px; margin-top: 3px; margin-left: 30px"
+                        <div class="col-2">
+                          <button style="text-align: center; width: 130px; margin-top: 3px;"
                                   type="submit"
                                   mat-raised-button class="border-radius-10 btn btn-primary btn-block mb-4 c2">Gửi
                           </button>
