@@ -12,7 +12,7 @@
           </div>
           <div class="col">
             <h2>{{user.fullName}}</h2>
-            <p>{{user.loginTime | date:"hh:mm | dd/MM/yyyy"}}</p>
+            <p>{{user.loginTime | date:"HH:mm | dd/MM/yyyy"}}</p>
           </div>
         </div>
       </div>
@@ -113,12 +113,12 @@
                          name="Email" title="Enter Email" placeholder="Email của bạn : abc@gmail.com"/>
                 </div>
                 <div style="color: red;padding-left: 30px" role="alert"
-                     *ngIf="registerForm.controls['newEmail'].errors?.['required']
-         && registerForm.controls['newEmail'].touched">{{messageNotBlank}}
+                     *ngIf="registerForm.controls['newEmail'].errors?.['required'] && registerForm.controls['newEmail'].touched">
+                  {{messageNotBlank}}
                 </div>
                 <div style="color: red;padding-left: 30px" role="alert"
-                     *ngIf="registerForm.controls['newEmail'].errors?.['email']
-         && registerForm.controls['newEmail'].touched">{{messageNotBlank}}
+                     *ngIf="registerForm.controls['newEmail'].errors?.['email'] && registerForm.controls['newEmail'].touched">
+                  {{messageNotBlank}}
                 </div>
                 <div class="row">
                   <div class="form-group col-xs-12">
@@ -131,12 +131,12 @@
                   </div>
                 </div>
                 <div style="color: red;padding-left: 30px" role="alert"
-                     *ngIf="registerForm.controls['fullName'].errors?.['required']
-         && registerForm.controls['fullName'].touched">{{messageNotBlank}}
+                     *ngIf="registerForm.controls['fullName'].errors?.['required'] && registerForm.controls['fullName'].touched">
+                  {{messageNotBlank}}
                 </div>
                 <div style="color: red;padding-left: 30px" role="alert"
-                     *ngIf="registerForm.controls['fullName'].errors?.['pattern']
-         && registerForm.controls['fullName'].touched">{{messageNotBlank}}
+                     *ngIf="registerForm.controls['fullName'].errors?.['pattern'] && registerForm.controls['fullName'].touched">
+                  {{messageNotBlank}}
                 </div>
                 <div class="form-group col-xs-12">
                   <label for="phone" class="sr-only">Số điện thoại</label>

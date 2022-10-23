@@ -62,6 +62,14 @@
   border: #ffc107 1px solid;
 }
 
+.font-size-15 {
+  font-size: 15px !important;
+}
+
+.border-green-b2dba1 {
+  border: #b2dba1 1px solid
+}
+
 .btn-file {
   position: relative;
   overflow: hidden;

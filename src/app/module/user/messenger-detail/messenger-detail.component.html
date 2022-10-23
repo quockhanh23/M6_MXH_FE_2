@@ -25,22 +25,22 @@
     </div>
   </div>
   <div class="col">
-    <div style="{{border}}" class="border-radius-5px">
-      <div style="background-color: #5bc0de; border: #b2dba1 1px solid">
+    <div style="margin-bottom: 10px">
+      <div style="background-color: #5bc0de; border-top-left-radius: 5px; border-top-right-radius: 5px">
         <img *ngIf="idUserLogIn != conversation?.idReceiver?.id"
-             class="imgFix" style="margin-left: 10px"
+             class="imgFix" style="margin-left: 10px; margin-bottom: 5px"
              src="{{conversation?.idReceiver?.avatar}}">
         <img *ngIf="idUserLogIn == conversation?.idReceiver?.id"
-             class="imgFix" style="margin-left: 10px"
+             class="imgFix" style="margin-left: 10px; margin-bottom: 5px"
              src="{{conversation?.idSender?.avatar}}">
-        <span style="color: red" class="material-icons">announcement</span>
+        <span *ngIf="count > 0 || count2 > 0" style="color: red" class="material-icons">announcement</span>
       </div>
-      <div style="border: #b2dba1 1px solid;{{background}}">
-        <div id="scroll" #scrollMe [scrollTop]="scrollMe.scrollHeight" class="col">
+      <div class="border-green-b2dba1" style="border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;">
+        <div id="scroll" #scrollMe [scrollTop]="scrollMe.scrollHeight" class="col" style="{{background}}">
           <div style="margin-top: 230px" align="center" *ngIf="count == 0">
             <img class="imgFix" src="{{conversation?.idReceiver?.avatar}}">
-            <p style="font-size: 15px; margin-top: 10px">Friend Finder</p>
-            <p style="font-size: 15px">Sống tại {{conversation?.idReceiver?.address}}</p>
+            <p class="font-size-15" style="margin-top: 10px">Friend Finder</p>
+            <p class="font-size-15">Sống tại {{conversation?.idReceiver?.address}}</p>
           </div>
           <div *ngFor="let mes of messengers">
             <div class="row" *ngIf="idUserLogIn == mes?.idSender?.id">
@@ -77,7 +77,7 @@
             </div>
           </div>
         </div>
-        <div style="margin-top: 15px">
+        <div style="border-top: #b2dba1 1px solid">
           <form [formGroup]="messengerForm"
                 (ngSubmit)="createMessenger(conversation?.id)">
             <div class="row" style="margin-top: 20px">
@@ -118,7 +118,7 @@
             </div>
             <div class="row">
               <div class="col-8">
-                <span style="margin-left: 10px">Tối đa 200 kí tự.</span>
+                <span style="margin-left: 10px">Tối đa 120 kí tự.</span>
               </div>
               <div class="col-3">
                 <div *ngIf="fb != null">
