@@ -16,15 +16,14 @@ export class MyImageComponent implements OnInit {
   idUser?: any
   fullNameUser?: any
   count?: any
-  height?:string
+  height?: string
+  check1 = false
+  check2 = false
 
   constructor(private imageService: ImageService,
               private router: Router,
               private activatedRoute: ActivatedRoute,
               private userService: UserService,) {
-  }
-
-  ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(paramMap => {
       const id: any = paramMap.get('id');
       console.log("id user: " + id)
@@ -32,22 +31,11 @@ export class MyImageComponent implements OnInit {
       this.userService.findById(id).subscribe(result => {
         this.fullNameUser = result.fullName
       })
-      this.imageService.allImageOfUser(id).subscribe(result => {
-        this.images = result
-        this.count = result.length
-        if (this.count  == 0) {
-          this.height = 'height: 450px'
-        }
-        if (this.count < 5 && this.count > 0) {
-          this.height = 'height: 320px'
-        }
-        if (this.count < 10 && this.count > 5) {
-          this.height = 'height: 50px'
-        }
-      }, error => {
-        console.log("Lỗi: " + error)
-      })
+      this.getAllImage(id)
     })
+  }
+
+  ngOnInit(): void {
   }
 
   delete(idImage: any) {
@@ -62,6 +50,41 @@ export class MyImageComponent implements OnInit {
   delete2(idImage: any) {
     console.log("idImage là: " + idImage);
     this.imageService.deleteInDataBase(idImage, this.idUser).subscribe(result => {
+      this.ngOnInit()
+    }, error => {
+      console.log("Lỗi: " + error)
+    })
+  }
+
+  getAllImage(idUser: any) {
+    console.log('vào hàm getAllImage')
+    this.check1 = true
+    this.check2 = false
+    this.imageService.allImageOfUser(idUser).subscribe(result => {
+      this.images = result
+      this.count = result.length
+      if (this.count == 0) {
+        this.height = 'height: 420px'
+      }
+      if (this.count < 5 && this.count > 0) {
+        this.height = 'height: 320px'
+      }
+      if (this.count < 10 && this.count > 5) {
+        this.height = 'height: 50px'
+      }
+      this.ngOnInit()
+    }, error => {
+      console.log("Lỗi: " + error)
+    })
+  }
+
+  getAllImageDeleted() {
+    console.log('vào hàm getAllImageDeleted')
+    this.check1 = false
+    this.check2 = true
+    this.imageService.getAllImageDeleted(this.idUser).subscribe(result => {
+      this.images = result
+      this.count = result.length
       this.ngOnInit()
     }, error => {
       console.log("Lỗi: " + error)

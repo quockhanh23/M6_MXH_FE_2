@@ -27,12 +27,12 @@ import {MessengerDetailComponent} from './messenger-detail/messenger-detail.comp
 import {MyShortNewComponent} from './my-short-new/my-short-new.component';
 import {GarbageComponent} from './garbage/garbage.component';
 import {GroupCreateComponent} from "./group-create/group-create.component";
-import { GroupSharedComponent } from './group-shared/group-shared.component';
-import { GroupDetailComponent } from './group-detail/group-detail.component';
+import {GroupSharedComponent} from './group-shared/group-shared.component';
+import {GroupDetailComponent} from './group-detail/group-detail.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import { ListImageDefaultComponent } from './list-image-default/list-image-default.component';
-import { SavedListComponent } from './saved-list/saved-list.component';
-import { LifeEventsDetailComponent } from './life-events-detail/life-events-detail.component';
+import {ListImageDefaultComponent} from './list-image-default/list-image-default.component';
+import {SavedListComponent} from './saved-list/saved-list.component';
+import {LifeEventsDetailComponent} from './life-events-detail/life-events-detail.component';
 import {MatDatepickerModule} from "@angular/material/datepicker";
 
 

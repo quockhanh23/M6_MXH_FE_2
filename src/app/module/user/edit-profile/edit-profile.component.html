@@ -4,12 +4,14 @@
              class="backButton title material-icons a1 a2 backArrowSpan">keyboard_backspace</span>
 </div>
 <div class="divFix">
-  <h2 *ngIf="!checkList" style="width: 18%" class="a1 a2" (click)="openListImage()">
-    Lựa chọn ảnh avatar mặc định
-  </h2>
-  <h2 *ngIf="checkList" style="width: 5%" class="a1 a2" (click)="closeListImage()">
-    Đóng
-  </h2>
+  <div class="col-3">
+    <h2 *ngIf="!checkList" style="width: 100%" class="a1 a2" (click)="openListImage()">
+      Lựa chọn ảnh avatar mặc định
+    </h2>
+    <h2 *ngIf="checkList" style="width: 100%" class="a1 a2" (click)="closeListImage()">
+      Đóng
+    </h2>
+  </div>
   <div *ngIf="imageDefault == null && checkList">
     <div>
       <div class="row">

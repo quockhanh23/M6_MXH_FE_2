@@ -47,6 +47,7 @@ export class RegisterLoginComponent implements OnInit {
   loading = false;
   submitted = false;
   lastUserLogin?: LastUserLogin[]
+  count = 0
 
   constructor(private activatedRoute: ActivatedRoute,
               private router: Router,
@@ -137,6 +138,7 @@ export class RegisterLoginComponent implements OnInit {
   historyLogin() {
     this.userService.historyLoginLocal().subscribe(rs => {
       this.lastUserLogin = rs
+      this.count = rs.length
     })
   }
 

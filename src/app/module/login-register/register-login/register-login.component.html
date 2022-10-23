@@ -1,13 +1,23 @@
 <div class="container wrapper">
   <div *ngIf="checkHRF()">
-    <h2>Đăng nhập gần đây</h2>
-    <div class="row">
-      <div style="margin-right: 10px" class="col-2" *ngFor="let user of lastUserLogin">
-        <img style="border-radius: 15px; width: 80px; height: 80px" src="{{user.avatar}}" alt="">
-        <h2>{{user.userName}}</h2>
-        <p>{{user.loginTime | date:"hh:mm | dd/MM/yyyy"}}</p>
+    <h2 style="margin-top: 10px" *ngIf="count > 0">
+      <sub><span class="material-icons">today</span></sub>&nbsp;Đăng nhập gần đây
+    </h2>
+    <hr>
+    <div class="row" style="margin-left: 5px">
+      <div style="margin-right: 10px; float: left; width: 30%" *ngFor="let user of lastUserLogin">
+        <div class="row">
+          <div class="col-3">
+            <img style="border-radius: 15px; width: 80px; height: 80px" src="{{user.avatar}}" alt="">
+          </div>
+          <div class="col">
+            <h2>{{user.fullName}}</h2>
+            <p>{{user.loginTime | date:"hh:mm | dd/MM/yyyy"}}</p>
+          </div>
+        </div>
       </div>
     </div>
+    <hr>
   </div>
   <div class="row">
     <div class="col-sm-5">
@@ -136,12 +146,12 @@
                          name="phone" title="Enter Phone number" placeholder="Số điện thoại"/>
                 </div>
                 <div style="color: red;padding-left: 30px" role="alert"
-                     *ngIf="registerForm.controls['newPhoneNumber'].errors?.['required']
-         && registerForm.controls['newPhoneNumber'].touched">{{messageNotBlank}}
+                     *ngIf="registerForm.controls['newPhoneNumber'].errors?.['required'] && registerForm.controls['newPhoneNumber'].touched">
+                  {{messageNotBlank}}
                 </div>
                 <div style="color: red;padding-left: 30px" role="alert"
-                     *ngIf="registerForm.controls['newPhoneNumber'].errors?.['pattern']
-         && registerForm.controls['newPhoneNumber'].touched">{{messageNotBlank}}
+                     *ngIf="registerForm.controls['newPhoneNumber'].errors?.['pattern'] && registerForm.controls['newPhoneNumber'].touched">
+                  {{messageNotBlank}}
                 </div>
               </div>
               <p style="margin-left: 10px; margin-top: 10px; font-size: 17px; margin-right: 5px">Giới tính:</p>
@@ -177,8 +187,8 @@
                          name="Username" title="Enter username" placeholder="Tên đăng nhập"/>
                 </div>
                 <div style="color: red;padding-left: 30px" role="alert"
-                     *ngIf="loginForm.controls['username'].errors?.['required']
-         && loginForm.controls['username'].touched">{{messageNotBlank}}
+                     *ngIf="loginForm.controls['username'].errors?.['required'] && loginForm.controls['username'].touched">
+                  {{messageNotBlank}}
                 </div>
               </div>
               <div class="row">
@@ -190,16 +200,16 @@
                          type="password" name="password" title="Enter password" placeholder="Mật khẩu"/>
                 </div>
                 <div style="color: red;padding-left: 20px" role="alert"
-                     *ngIf="loginForm.controls['password'].errors?.['required']
-         && loginForm.controls['password'].touched">{{messageNotBlank}}
+                     *ngIf="loginForm.controls['password'].errors?.['required'] && loginForm.controls['password'].touched">
+                  {{messageNotBlank}}
                 </div>
                 <div style="color: red;padding-left: 20px" role="alert"
-                     *ngIf="loginForm.controls['password'].errors?.['minlength']
-         && loginForm.controls['password'].touched">{{messageLengthPassword}}
+                     *ngIf="loginForm.controls['password'].errors?.['minlength'] && loginForm.controls['password'].touched">
+                  {{messageLengthPassword}}
                 </div>
                 <div style="color: red;padding-left: 20px" role="alert"
-                     *ngIf="loginForm.controls['password'].errors?.['maxlength']
-         && loginForm.controls['password'].touched">{{messageLengthPassword}}
+                     *ngIf="loginForm.controls['password'].errors?.['maxlength'] && loginForm.controls['password'].touched">
+                  {{messageLengthPassword}}
                 </div>
               </div>
               <button mat-flat-button color="primary" class="btn btn-primary">Đăng nhập</button>

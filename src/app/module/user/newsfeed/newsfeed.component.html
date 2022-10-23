@@ -117,7 +117,7 @@
                 <button routerLink="/user/detailNewsfeed/{{p?.id}}" class="a2 font-size-16" mat-menu-item>
                   Chỉnh sửa bài viết
                 </button>
-                <button class="a2 font-size-16" mat-menu-item>Xoá bài viết</button>
+                <button class="a2 font-size-16" mat-menu-item>Xóa bài viết</button>
               </mat-menu>
             </div>
             <div class="line-divider"></div>
@@ -138,8 +138,11 @@
               <span style="color: #d20845" (click)="createDisLike(p?.id)" matTooltip="Không thích"
                     class="material-icons a1">thumb_down</span>
               <sub>{{p.numberDisLike}}</sub>
-              <span matTooltip="..." style="font-size: 25px; color: rebeccapurple"
+              <span [matMenuTriggerFor]="menu" matTooltip="..." style="font-size: 25px; color: rebeccapurple"
                     class="material-icons a1">zoom_in</span>
+              <mat-menu #menu="matMenu">
+                <button class="a2 font-size-16" mat-menu-item>Xem chi tiết</button>
+              </mat-menu>
             </div>
             <h3>Tất cả bình luận: </h3>
             <div *ngFor=" let c of comment">
@@ -282,4 +285,3 @@
     </div>
   </div>
 </div>
-
