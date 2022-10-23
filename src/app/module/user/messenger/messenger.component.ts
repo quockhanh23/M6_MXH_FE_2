@@ -53,6 +53,11 @@ export class MessengerComponent implements OnInit {
   colorCheckFriendMessage2 = 'color: #5bc0de'
   firstDayMessage?: any
   checkFirstDayMessage = false
+  send?: any
+  checkIdSend = false
+  lastIdSend: any
+  checkCreateMessage = false
+  pressToChat = 'Ấn để trò truyện'
 
   messengerForm: FormGroup = new FormGroup({
     content: new FormControl("",),
@@ -101,6 +106,7 @@ export class MessengerComponent implements OnInit {
   }
 
   createConversation(idReceiver: any) {
+    this.checkCreateMessage = false
     // @ts-ignore
     this.messengerService.createConversation(this.idUserLogIn, idReceiver).subscribe(rs => {
       this.conversation = rs
@@ -111,7 +117,15 @@ export class MessengerComponent implements OnInit {
       this.messengerService.findAllByConversationOrderById(this.idConversation).subscribe(rs => {
         this.messengers = rs
         if (rs.length > 0) {
-          console.log("vào tận đây")
+          // @ts-ignore
+          this.messengerService.lastMessageIdSender(this.idConversation).subscribe(rs => {
+            this.lastIdSend = rs
+            console.log("lastIdSend" + this.lastIdSend)
+            if (this.lastIdSend == this.idUserLogIn) {
+              this.checkCreateMessage = true
+              this.listMessage(this.idConversation)
+            }
+          })
           this.firstDayMessage = rs[0].createAt
           this.checkFirstDayMessage = true
         } else {
@@ -151,23 +165,31 @@ export class MessengerComponent implements OnInit {
     // @ts-ignore
     this.messengerService.createMessenger(idConversation, this.idUserLogIn, newMessenger).subscribe(rs => {
       console.log("vào đây")
+      this.listMessage(idConversation)
       // @ts-ignore
-      this.messengerService.findAllByConversationOrderById(this.idConversation).subscribe(rs => {
-        this.messengers = rs
-        this.getAllMessageHavePhoto()
-        this.getAllMessageHaveLink()
-        this.fb = null
-        try {
-          this.count = rs.length
-        } catch (err) {
-          console.log("lỗi length")
-        }
-        this.ngOnInit()
-      })
     }, error => {
       console.log("Lỗi: " + error)
     })
     this.ngOnInit()
+  }
+
+  listMessage(idConversation: any) {
+    this.messengerService.findAllByConversationOrderById(idConversation).subscribe(rs => {
+      this.checkCreateMessage = true
+      this.messengers = rs
+      this.send = new Date()
+      this.lastMessageIdSender(this.idConversation)
+      console.log("checkIdSend" + this.checkIdSend)
+      this.getAllMessageHavePhoto()
+      this.getAllMessageHaveLink()
+      this.fb = null
+      try {
+        this.count = rs.length
+      } catch (err) {
+        console.log("lỗi length")
+      }
+      this.ngOnInit()
+    })
   }
 
   onFileSelected(event: any) {
@@ -282,6 +304,13 @@ export class MessengerComponent implements OnInit {
     this.messengerService.listConversationNotFriend(this.idUserLogIn).subscribe(rs => {
       this.conversationsNotFriend = rs
       this.countMessageNotFriend = rs.length
+    })
+  }
+
+  lastMessageIdSender(idConversation: any) {
+    this.messengerService.lastMessageIdSender(idConversation).subscribe(rs => {
+      this.lastIdSend = rs
+      console.log("lastIdSend" + this.lastIdSend)
     })
   }
 }

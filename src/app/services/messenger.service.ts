@@ -59,4 +59,8 @@ export class MessengerService {
   messageNotFriend(idConversation: string): Observable<Messenger[]> {
     return this.httpClient.get<Messenger[]>(API_URL + `/messageNotFriend?idConversation=${idConversation}`);
   }
+
+  lastMessageIdSender(idConversation: string): Observable<any> {
+    return this.httpClient.get<any>(API_URL + `/lastMessageIdSender?idConversation=${idConversation}`);
+  }
 }

@@ -43,7 +43,7 @@
         </li>
         <li>
           <sub><span style="font-size: 18px; color: purple" class="material-icons">turned_in</span></sub>
-          <a style="margin-left: 12px" class="a1 a2">Đã lưu</a>
+          <a [routerLink]="['/user/saveList']" style="margin-left: 12px" class="a1 a2">Đã lưu</a>
         </li>
       </ul>
     </div>
@@ -99,10 +99,10 @@
         *ngFor=" let p of posts">
         <div class="post-container">
           <img *ngIf="p?.userDTO?.id == idUserLogIn" src="{{p?.userDTO?.avatar}}"
-               matTooltip="Xem trang cá nhân" routerLink="/user/user-detail" class="a1 profile-photo-md pull-left"/>
+               matTooltip="{{detailUser}}" routerLink="/user/user-detail" class="a1 profile-photo-md pull-left"/>
           <img *ngIf="p?.userDTO?.id != idUserLogIn" routerLink="/user/people-detail/{{p?.userDTO?.id}}"
                src="{{p?.userDTO?.avatar}}"
-               matTooltip="Xem trang cá nhân" class="a1 profile-photo-md pull-left"/>
+               matTooltip="{{detailUser}}" class="a1 profile-photo-md pull-left"/>
           <div class="post-detail">
             <div class="user-info">
               <h2 *ngIf="p?.userDTO?.id == idUserLogIn"><a routerLink="/user/user-detail"
@@ -147,11 +147,11 @@
                 <div class="row">
                   <div class="col-1">
                     <img *ngIf="c?.user?.id != idUserLogIn" routerLink="/user/people-detail/{{c?.user?.id}}"
-                         matTooltip="Xem trang cá nhân"
+                         matTooltip="{{detailUser}}"
                          src="{{c?.user?.avatar}}"
                          class="a1 profile-photo-sm"/>
                     <img *ngIf="c?.user?.id == idUserLogIn" [routerLink]="['/user/user-detail']"
-                         matTooltip="Xem trang cá nhân"
+                         matTooltip="{{detailUser}}"
                          src="{{c?.user?.avatar}}"
                          class="a1 profile-photo-sm"/>
                   </div>
@@ -274,7 +274,7 @@
             <div>
               <h3><a>{{user.fullName}}</a></h3>
               <p style="margin-left: 12px" routerLink="/user/people-detail/{{user?.id}}"
-                 class="font-size-15 text-green a1 a2">Xem trang cá nhân</p>
+                 class="font-size-15 text-green a1 a2">{{detailUser}}</p>
             </div>
           </div>
         </div>

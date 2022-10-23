@@ -9,7 +9,6 @@ import {CommentService} from "../../../services/comment.service";
 import {Comment} from "../../../models/comment";
 import {LikePostService} from "../../../services/likePost.service";
 import {FormControl, FormGroup} from "@angular/forms";
-import {DisLikePost} from "../../../models/dis-like-post";
 import {IconHeart} from "../../../models/icon-heart";
 import {LikeCommentService} from "../../../services/like-comment.service";
 import {FriendRelation} from "../../../models/friend-relation";
@@ -48,6 +47,7 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
   menu: any
   fb: any;
   downloadURL!: Observable<string>;
+  detailUser = 'Xem trang cá nhân'
 
   commentCreateForm: FormGroup = new FormGroup({
     content: new FormControl("",)

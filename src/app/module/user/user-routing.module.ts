@@ -23,10 +23,14 @@ import {GroupDetailComponent} from "./group-detail/group-detail.component";
 import {GarbageComponent} from "./garbage/garbage.component";
 import {MessengerDetailComponent} from "./messenger-detail/messenger-detail.component";
 import {LifeEventsDetailComponent} from "./life-events-detail/life-events-detail.component";
+import {SavedListComponent} from "./saved-list/saved-list.component";
 
 const routes: Routes = [
   {
     path: 'newsfeed', component: NewsfeedComponent,
+  },
+  {
+    path: 'saveList', component: SavedListComponent,
   },
   {
     path: 'life/:id', component: LifeEventsDetailComponent

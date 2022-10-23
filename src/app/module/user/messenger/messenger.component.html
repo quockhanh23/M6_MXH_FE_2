@@ -22,7 +22,7 @@
     <div class="row" style="margin-left: 1%">
       <div class="col">
         <h2 matTooltip="Tin nhắn từ bạn bè" class="a1 a2" (click)="friendMessageTrue()"
-            style="{{colorCheckFriendMessage1}}">Bạn bè của bạn</h2>
+            style="{{colorCheckFriendMessage1}}">Bạn bè</h2>
         <a *ngIf="countFriend == 0 && checkFriendMessage" style="font-size: 18px" [routerLink]="['/user/requests']">Tìm
           kiếm bạn bè</a>
       </div>
@@ -40,7 +40,7 @@
              style="{{border}}; border-radius: 5px; margin-top: 5px">
           <img class="imageListAvatarMessage"
                src="{{list?.avatar}}">
-          <h2 class="a1 a2" matTooltip="Ấn để trò truyện" (click)="openMessage()"
+          <h2 class="a1 a2" matTooltip="{{pressToChat}}" (click)="openMessage()"
               style="margin-top: 15px">{{list?.fullName}}</h2>
           <span style="color: #0a70b9" class="material-icons">textsms</span>
         </div>
@@ -54,14 +54,14 @@
                src="{{user?.idSender?.avatar}}">
           <h2 (click)="createConversation(user?.idSender?.id); openMessage()" *ngIf="user?.idSender?.id != idUserLogIn"
               class="a1 a2"
-              matTooltip="Ấn để trò truyện"
+              matTooltip="{{pressToChat}}"
               style="margin-top: 15px">{{user?.idSender?.fullName}}</h2>
           <span style="color: #0a70b9" class="material-icons" *ngIf="user?.idSender?.id != idUserLogIn">textsms</span>
           <img *ngIf="user?.idReceiver?.id != idUserLogIn" class="imageListAvatarMessage"
                src="{{user?.idReceiver?.avatar}}">
           <h2 *ngIf="user?.idReceiver?.id != idUserLogIn"
               (click)="createConversation(user?.idReceiver?.id); openMessage()" class="a1 a2"
-              matTooltip="Ấn để trò truyện"
+              matTooltip="{{pressToChat}}"
               style="margin-top: 15px">{{user?.idReceiver?.fullName}}</h2>
           <span *ngIf="user?.idReceiver?.id != idUserLogIn" style="color: #0a70b9" class="material-icons">textsms</span>
         </div>
@@ -116,8 +116,9 @@
               <div style="margin-top: 215px" align="center" *ngIf="count == 0">
                 <img *ngIf="conversation != null" class="imgFix" src="{{conversation?.idReceiver?.avatar}}">
                 <p style="font-size: 15px; margin-top: 10px">Friend Finder</p>
-                <p *ngIf="conversation != null" style="font-size: 15px">Sống
-                  tại {{conversation?.idReceiver?.address}}</p>
+                <p *ngIf="conversation != null" style="font-size: 15px">
+                  Sống tại {{conversation?.idReceiver?.address}}
+                </p>
               </div>
               <div *ngFor="let mes of messengers">
                 <div class="row" *ngIf="idUserLogIn == mes?.idSender?.id">
@@ -127,7 +128,7 @@
                   </div>
                   <div class="col-11">
                     <h2 align="left" style="margin-top: 15px;">
-                  <span class="messageContentLeft" *ngIf="mes?.content != ''">
+                      <span class="messageContentLeft" *ngIf="mes?.content != ''">
                     {{mes?.content}}</span>
                     </h2>
                     <img align="left" class="imageMessage"
@@ -152,6 +153,11 @@
                   </div>
                 </div>
               </div>
+              <p style="text-align: left; font-size: 10px"
+                 *ngIf="lastIdSend == idUserLogIn && checkCreateMessage">
+                Đã gửi&nbsp;|&nbsp;{{send | date:"HH:MM:ss | dd/MM/yyyy"}}
+                <sub><span style="font-size: 10px" class="material-icons">done</span></sub>
+              </p>
             </div>
             <div>
               <form [formGroup]="messengerForm"
