@@ -27,6 +27,8 @@ export class FriendListComponent implements OnInit {
   heightIfBlank1: any
   heightIfBlank2: any
   checkLength = false
+  col = 4
+  align = 'left'
 
   constructor(private userService: UserService,
               private friendRelationService: FriendRelationService,
@@ -43,8 +45,10 @@ export class FriendListComponent implements OnInit {
     })
     this.friendRelationService.listFriend(this.idUser).subscribe(rs => {
       if (rs.length == 0 || rs.length == undefined) {
+        this.align = 'center'
+        this.col = 12
         this.checkLength = true
-        this.heightIfBlank1 = 'height: 120px'
+        this.heightIfBlank1 = 'height: 100px'
         this.heightIfBlank2 = 'height: 250px'
       }
       console.log("idUser: " + this.idUser)

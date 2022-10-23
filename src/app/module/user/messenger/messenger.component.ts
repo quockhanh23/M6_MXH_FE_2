@@ -49,8 +49,8 @@ export class MessengerComponent implements OnInit {
   fb: any;
   checkFriendMessage = true
   downloadURL!: Observable<string>;
-  colorCheckFriendMessage1 = 'color: #5bc0de'
-  colorCheckFriendMessage2 = 'color: #5bc0de'
+  colorCheckFriendMessage1 = 'color: #ffc107'
+  colorCheckFriendMessage2 = 'color: #8c8c8c'
   firstDayMessage?: any
   checkFirstDayMessage = false
   send?: any

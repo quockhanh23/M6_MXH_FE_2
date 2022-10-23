@@ -41,7 +41,7 @@ export class MyPostComponent implements OnInit {
       if (result.length == 0 || result.length == undefined) {
         this.checkLength = true
         this.heightIfBlank1 = 'height: 150px'
-        this.heightIfBlank2 = 'height: 180px'
+        this.heightIfBlank2 = 'height: 250px'
       }
     }, error => {
       console.log("Lỗi: " + error)

@@ -8,10 +8,16 @@
 </div>
 <div class="divFix">
   <div class="row">
-    <div class="col-4">
-      <h3 *ngIf="idUser == idUserLogIn" class="h3List grey">{{list}} bạn bè ({{count}})</h3>
-      <h3 *ngIf="idUser != idUserLogIn" class="h3List grey">{{list}} bạn bè của: <span
-        style="color: #0fd90f">{{nameUser}} ({{count}})</span></h3>
+    <div class="col-{{col}}">
+      <h2 align="{{align}}" *ngIf="idUser == idUserLogIn">
+        <sub><span class="material-icons">assignment</span></sub>
+        {{list}} bạn bè ({{count}})
+      </h2>
+      <h2 align="{{align}}" *ngIf="idUser != idUserLogIn">
+        <sub><span class="material-icons">assignment</span></sub>
+        {{list}} bạn bè của: <span
+        style="color: #0fd90f">{{nameUser}} ({{count}})</span>
+      </h2>
     </div>
     <div class="col-4">
       <form *ngIf="count > 0">
@@ -56,7 +62,7 @@
     </div>
   </div>
 </div>
-<div *ngIf="checkLength">
+<div class="divFix" *ngIf="checkLength">
   <div style="{{heightIfBlank1}}">
   </div>
   <div>
