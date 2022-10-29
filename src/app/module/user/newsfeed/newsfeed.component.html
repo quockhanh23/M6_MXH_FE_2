@@ -188,15 +188,16 @@
                             <div class="col-1">
                               <img src="{{userDetail.avatar}}" alt="" class="profile-photo-sm"/>
                             </div>
-                            <div class="col-8">
-                              <input style="width: 370px !important; height: 40px; border-radius: 11px"
+                            <div class="col-10">
+                              <input style="width: 100% !important; height: 40px; border-radius: 11px"
                                      onfocus="this.value=''" type="text"
                                      class="form-control c1 i1 font-size-18" formControlName="content"
                                      placeholder="Trả lời : {{c?.user?.fullName}}">
                             </div>
-                            <div class="col-3">
+                            <div class="col-1">
                               <button
-                                style="text-align: center; width: 100px; margin-left: 35px; margin-top: 3px; border-radius: 8px"
+                                style="text-align: center; width: 100px;
+                                 margin-top: 3px; border-radius: 8px;"
                                 type="submit" mat-raised-button
                                 class="btn btn-primary btn-block mb-4 c2">Gửi
                               </button>
@@ -223,7 +224,7 @@
                                 class="profile-link a1">{{an?.user?.fullName}}: </a> {{an.content}}</span>
                           </div>
                           <div *ngIf="an?.comment?.id === c.id" class="col-1">
-                            <span class="font-size-15">
+                            <span class="font-size-14">
                         {{an?.createAt | date:"HH:MM|dd/MM"}}</span>
                           </div>
                         </div>
@@ -254,7 +255,7 @@
                     <span class="font-size-15">Tối đa 500 kí tự.</span>
                   </div>
                   <div class="col-3">
-                    <button style="text-align: center; width: 130px; margin-top: 3px" type="submit"
+                    <button style="text-align: center; width: 120px; margin-top: 3px" type="submit"
                             mat-raised-button class="border-radius-10 btn btn-primary btn-block mb-4 c2">Gửi
                     </button>
                   </div>
