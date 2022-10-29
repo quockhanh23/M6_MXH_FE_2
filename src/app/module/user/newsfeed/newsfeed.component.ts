@@ -48,6 +48,8 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
   fb: any;
   downloadURL!: Observable<string>;
   detailUser = 'Xem trang cá nhân'
+  dateNow?: string
+  dateCreate?: string
 
   commentCreateForm: FormGroup = new FormGroup({
     content: new FormControl("",)

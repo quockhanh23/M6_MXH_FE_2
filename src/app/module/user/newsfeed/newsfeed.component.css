@@ -33,3 +33,8 @@
   border-radius: 10px;
 }
 
+::placeholder {
+  color: grey;
+  opacity: 1; /* Độ đậm nhạt chữ placeholder trong ô input */
+}
+

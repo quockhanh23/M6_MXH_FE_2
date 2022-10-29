@@ -62,7 +62,7 @@
                        class="font-size-18 form-control c1 i1" formControlName="content"
                        placeholder="Bạn đang nghĩ gì thế?">
               </div>
-              <span class="font-size-15" style="margin-left: 60px">Tối đa 1000 kí tự.</span>
+              <span class="font-size-15" style="margin-left: 60px">Tối đa 500 kí tự.</span>
               <br>
               <div style="margin-left: 60px" *ngIf="checkDone">
                 <mat-spinner [diameter]="30"></mat-spinner>
@@ -189,15 +189,15 @@
                               <img src="{{userDetail.avatar}}" alt="" class="profile-photo-sm"/>
                             </div>
                             <div class="col-10">
-                              <input style="width: 100% !important; height: 40px; border-radius: 11px"
+                              <input style="width: 100% !important; height: 35px; border-radius: 11px; c"
                                      onfocus="this.value=''" type="text"
-                                     class="form-control c1 i1 font-size-18" formControlName="content"
+                                     class="form-control c1 i1 font-size-16" formControlName="content"
                                      placeholder="Trả lời : {{c?.user?.fullName}}">
                             </div>
                             <div class="col-1">
                               <button
                                 style="text-align: center; width: 100px;
-                                 margin-top: 3px; border-radius: 8px;"
+                                 border-radius: 8px; height: 35px"
                                 type="submit" mat-raised-button
                                 class="btn btn-primary btn-block mb-4 c2">Gửi
                               </button>
@@ -248,14 +248,14 @@
                          class="profile-photo-sm"/>
                   </div>
                   <div class="col-8">
-                    <input style="width: 100% !important; height: 40px; border-radius: 11px" onfocus="this.value=''"
+                    <input style="width: 100% !important; height: 37px; border-radius: 11px" onfocus="this.value=''"
                            type="text"
                            class="form-control c1 i1 font-size-18" formControlName="content"
                            placeholder="Bình luận...">
-                    <span class="font-size-15">Tối đa 500 kí tự.</span>
+                    <span class="font-size-15">Tối đa 200 kí tự.</span>
                   </div>
                   <div class="col-3">
-                    <button style="text-align: center; width: 120px; margin-top: 3px" type="submit"
+                    <button style="text-align: center; width: 120px" type="submit"
                             mat-raised-button class="border-radius-10 btn btn-primary btn-block mb-4 c2">Gửi
                     </button>
                   </div>
