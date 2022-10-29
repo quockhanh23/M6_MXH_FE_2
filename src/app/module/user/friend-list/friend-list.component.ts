@@ -3,6 +3,7 @@ import {UserService} from "../../../services/user.service";
 import {FriendRelationService} from "../../../services/friend-relation.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {User} from "../../../models/user";
+import {UserDTO} from "../../../models/user-dto";
 
 
 @Component({
@@ -14,9 +15,8 @@ export class FriendListComponent implements OnInit {
 
   list? = 'Danh sách'
   idUserLogIn = localStorage.getItem("USERID")
-  listFriend?: User[];
+  listFriend?: UserDTO[];
   count?: any
-  count2?: any
   idUser?: any
   nameUser?: any
   obj?: Object
@@ -67,11 +67,6 @@ export class FriendListComponent implements OnInit {
         this.height = 'height: ' + this.px + 'px'
       }
       this.listFriend = rs
-      for (let i = 0; i < this.listFriend.length; i++) {
-        this.friendRelationService.listMutualFriend(this.listFriend[i].id, this.idUserLogIn).subscribe(rs => {
-          this.count2 = rs.length
-        })
-      }
     }, error => {
       console.log(error)
     })

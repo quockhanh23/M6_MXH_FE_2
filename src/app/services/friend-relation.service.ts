@@ -63,6 +63,10 @@ export class FriendRelationService {
     return this.httpClient.get<FriendRelation[]>(API_URL + `/listMutualFriend?idUser=${idUser}&idFriend=${idFriend}`);
   }
 
+  mutualFriends(idUserLogin: any, idUser: any): Observable<any> {
+    return this.httpClient.get<any>(API_URL + `/mutualFriends?idUserLogin=${idUserLogin}&idUser=${idUser}`);
+  }
+
   agree(idFriend: any, idLogin: any): Observable<FriendRelation[]> {
     return this.httpClient.get<FriendRelation[]>(API_URL + `/agree?idFriend=${idFriend}&idLogin=${idLogin}`);
   }

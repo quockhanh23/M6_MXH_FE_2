@@ -13,4 +13,5 @@ export interface UserDTO {
   education?: string
   createAt?: string
   status?: string
+  mutualFriends?: string
 }

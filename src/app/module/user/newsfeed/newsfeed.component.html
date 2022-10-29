@@ -144,7 +144,7 @@
                 <button class="a2 font-size-16" mat-menu-item>Xem chi tiết</button>
               </mat-menu>
             </div>
-            <h3>Tất cả bình luận: </h3>
+            <h3>Tất cả bình luận: {{p?.countAllComment}}</h3>
             <div *ngFor=" let c of comment">
               <div *ngIf="c?.post?.id === p.id">
                 <div class="row">
@@ -205,7 +205,7 @@
                           </div>
                         </form>
                       </div>
-                      <div *ngFor="let an of answerComments">
+                      <div *ngFor="let an of answerComments" style="margin-bottom: 10px">
                         <div class="row">
                           <div class="col-1">
                             <span *ngIf="an?.comment?.id === c.id" class="font-size-15">
@@ -225,7 +225,7 @@
                           </div>
                           <div *ngIf="an?.comment?.id === c.id" class="col-1">
                             <span class="font-size-14">
-                        {{an?.createAt | date:"HH:MM|dd/MM"}}</span>
+                        {{an?.createAt | date:"HH:mm|dd/MM"}}</span>
                           </div>
                         </div>
                       </div>
@@ -233,7 +233,7 @@
                   </div>
                   <div class="col-3">
                     <span class="font-size-15">
-                        {{c.createAt | date:"HH:MM | dd/MM/yyyy" }}
+                        {{c.createAt | date:"HH:mm | dd/MM/yyyy" }}
                     </span>
                   </div>
                 </div>

@@ -121,6 +121,9 @@
                 <li class="li1 active"><i class="icon ion-ios-information-outline"></i>
                   <a matTooltip="Xem tất cả bạn bè" routerLink="/user/listFriend/{{userDetail?.id}}" class="a1">Bạn bè
                     : {{countFriend}}</a></li>
+                <li class="li1 active"><i class="icon ion-ios-information-outline"></i>
+                  <a matTooltip="Xem tất cả bạn bè" class="a1">Bạn chung
+                    : {{countMutualFriends}}</a></li>
               </div>
               <div class="divLi1">
                 <li class="li1 active"><i class="icon ion-ios-information-outline"></i>
@@ -130,7 +133,7 @@
             </ul>
           </div>
           <div class="col-6" style="border: #e5e5e5 1px solid; border-radius: 5px; margin-top: 100px">
-            <div class="row" style="border: #e5e5e5 1px solid; border-radius: 5px">
+            <div class="row" style="border-bottom: #e5e5e5 1px solid;">
               <p style="margin-top: 10px; height: 32px">&nbsp; Bài viết của {{userDetail?.fullName}}</p>
             </div>
             <div class=" font-size-18" style="border: 1px violet !important; margin-bottom: 20px"

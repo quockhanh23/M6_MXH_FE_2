@@ -54,6 +54,7 @@ export class PeopleDetailComponent implements OnInit {
   menu: any
   size: any
   avatarUserLogin?: any
+  countMutualFriends = 0
 
   commentCreateForm: FormGroup = new FormGroup({
     content: new FormControl("",)
@@ -117,6 +118,7 @@ export class PeopleDetailComponent implements OnInit {
     this.listRequest()
     this.friendCheck()
     this.friendList()
+    this.mutualFriends()
   }
 
   getAllPostByUser() {
@@ -402,6 +404,12 @@ export class PeopleDetailComponent implements OnInit {
   removeFriend() {
     this.friendRelationService.unfriend(this.idUserLogIn, this.idUser).subscribe(rs => {
       this.checkRemoveFriend = false
+    })
+  }
+
+  mutualFriends() {
+    this.friendRelationService.mutualFriends(this.idUserLogIn, this.idUser).subscribe(rs => {
+      this.countMutualFriends = rs
     })
   }
 

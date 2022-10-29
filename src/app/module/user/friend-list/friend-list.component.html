@@ -38,6 +38,7 @@
          margin-right: 10px; margin-bottom: 10px; border: #afd9ee 1px solid"
         class="col-5"
         *ngFor=" let friend of listFriend">
+
         <div id="left1">
           <img style="font-size: 40px; width: 70px; height: 70px; border-radius: 5px; margin-top: 5px"
                data-toggle="tooltip" data-placement="top" matTooltip="Xem trang cá nhân"
@@ -47,15 +48,15 @@
         <div id="left2">
           <h2 matTooltip="Xem trang cá nhân"><a routerLink="/user/people-detail/{{friend?.id}}">{{friend?.fullName}}</a>
           </h2>
-          <p>Bạn chung: </p>
+          <p *ngIf="idUser == idUserLogIn">Bạn chung: {{friend?.mutualFriends}}</p>
         </div>
-        <div id="left3">
+        <div id="left3" *ngIf="idUser == idUserLogIn">
              <span matTooltip="Tuỳ chọn" [matMenuTriggerFor]="menu" style="margin-top: 10px"
                    class="material-icons a1 a2">more_horiz</span>
           <mat-menu #menu="matMenu">
             <button class="a2 font-size-17" mat-menu-item>Yêu thích</button>
             <button class="a2 font-size-17" mat-menu-item>Bỏ theo dõi</button>
-            <button class="a2 font-size-17" mat-menu-item>Huỷ kết bạn</button>
+            <button  class="a2 font-size-17" mat-menu-item>Huỷ kết bạn</button>
           </mat-menu>
         </div>
       </div>
@@ -76,3 +77,4 @@
   <div style="{{heightIfBlank2}}">
   </div>
 </div>
+
