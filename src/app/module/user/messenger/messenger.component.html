@@ -93,7 +93,7 @@
       <div class="col-{{withMessage}}">
         <div *ngIf="checkConversation" style="; border-radius: 5px">
           <div class="border-green-b2dba1"
-            style="background-color: #5bc0de; height: 65px;
+               style="background-color: #5bc0de; height: 65px;
              border-top-right-radius: 5px; border-top-left-radius: 5px">
             <img *ngIf="idUserLogIn != conversation?.idReceiver?.id && conversation != null"
                  routerLink="/user/people-detail/{{conversation?.idReceiver?.id}}" class="imgFix a1 imc"
@@ -239,9 +239,12 @@
           </div>
         </div>
       </div>
-      <div class="col-{{withInfo}}; border-green-b2dba1" style="border-radius: 5px">
+      <div class="col-{{withInfo}}"
+           style="border-radius: 5px; border-right: #b2dba1 1px solid;
+            border-left: #b2dba1 1px solid; border-bottom: #b2dba1 1px solid">
         <div *ngIf="checkOpenInfo">
-          <div class="row" style="height: 65px; background-color: #5bc0de">
+          <div class="row" style="height: 65px; background-color: #5bc0de;
+           border-top-left-radius: 5px; border-top-right-radius: 5px">
             <span matTooltip="Thu gọn" (click)="closeInfo()"
                   style="font-size: 26px; color: whitesmoke; margin-top: 2px"
                   class="a1 a2 material-icons">first_page</span>
